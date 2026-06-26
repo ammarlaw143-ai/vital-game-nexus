@@ -8,7 +8,7 @@ export const Route = createFileRoute("/news/$slug")({
   loader: ({ params }) => {
     const article = findArticle(params.slug);
     if (!article) throw notFound();
-    return { article };
+    return { article } as { article: NonNullable<ReturnType<typeof findArticle>> };
   },
   head: ({ loaderData }) => {
     const a = loaderData?.article;

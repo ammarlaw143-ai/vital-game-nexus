@@ -5,7 +5,7 @@ import { GameCard } from "@/components/game-card";
 import { games, type Platform } from "@/lib/games";
 import { Filter } from "lucide-react";
 
-export const Route = createFileRoute("/games")({
+export const Route = createFileRoute("/games/")({
   head: () => ({
     meta: [
       { title: "All Games — Browse the Nexus Database" },

@@ -9,7 +9,7 @@ export const Route = createFileRoute("/games/$slug")({
   loader: ({ params }) => {
     const game = findGame(params.slug);
     if (!game) throw notFound();
-    return { game };
+    return { game } as { game: NonNullable<ReturnType<typeof findGame>> };
   },
   head: ({ loaderData }) => {
     const g = loaderData?.game;
