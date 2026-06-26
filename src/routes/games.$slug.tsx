@@ -30,7 +30,7 @@ export const Route = createFileRoute("/games/$slug")({
 });
 
 function GameDetail() {
-  const { game } = Route.useLoaderData();
+  const { game } = Route.useLoaderData() as { game: NonNullable<ReturnType<typeof findGame>> };
   const { has, toggle } = useFavorites();
   const fav = has(game.slug);
   const related = games
