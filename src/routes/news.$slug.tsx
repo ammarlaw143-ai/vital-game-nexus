@@ -29,7 +29,7 @@ export const Route = createFileRoute("/news/$slug")({
 });
 
 function ArticlePage() {
-  const { article } = Route.useLoaderData();
+  const { article } = Route.useLoaderData() as { article: NonNullable<ReturnType<typeof findArticle>> };
   const related = news.filter((n) => n.slug !== article.slug && n.category === article.category).slice(0, 3);
 
   return (
