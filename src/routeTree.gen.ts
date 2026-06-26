@@ -9,12 +9,58 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as TermsRouteImport } from './routes/terms'
+import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
+import { Route as PrivacyRouteImport } from './routes/privacy'
+import { Route as FavoritesRouteImport } from './routes/favorites'
+import { Route as DisclaimerRouteImport } from './routes/disclaimer'
+import { Route as ContactRouteImport } from './routes/contact'
+import { Route as AboutRouteImport } from './routes/about'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as NewsIndexRouteImport } from './routes/news.index'
+import { Route as MinecraftIndexRouteImport } from './routes/minecraft.index'
+import { Route as GtaIndexRouteImport } from './routes/gta.index'
 import { Route as GamesIndexRouteImport } from './routes/games.index'
 import { Route as NewsSlugRouteImport } from './routes/news.$slug'
+import { Route as MinecraftModsRouteImport } from './routes/minecraft.mods'
+import { Route as MinecraftCommandsRouteImport } from './routes/minecraft.commands'
 import { Route as GamesSlugRouteImport } from './routes/games.$slug'
 
+const TermsRoute = TermsRouteImport.update({
+  id: '/terms',
+  path: '/terms',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SitemapDotxmlRoute = SitemapDotxmlRouteImport.update({
+  id: '/sitemap.xml',
+  path: '/sitemap.xml',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PrivacyRoute = PrivacyRouteImport.update({
+  id: '/privacy',
+  path: '/privacy',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const FavoritesRoute = FavoritesRouteImport.update({
+  id: '/favorites',
+  path: '/favorites',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const DisclaimerRoute = DisclaimerRouteImport.update({
+  id: '/disclaimer',
+  path: '/disclaimer',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ContactRoute = ContactRouteImport.update({
+  id: '/contact',
+  path: '/contact',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AboutRoute = AboutRouteImport.update({
+  id: '/about',
+  path: '/about',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
@@ -23,6 +69,16 @@ const IndexRoute = IndexRouteImport.update({
 const NewsIndexRoute = NewsIndexRouteImport.update({
   id: '/news/',
   path: '/news/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const MinecraftIndexRoute = MinecraftIndexRouteImport.update({
+  id: '/minecraft/',
+  path: '/minecraft/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const GtaIndexRoute = GtaIndexRouteImport.update({
+  id: '/gta/',
+  path: '/gta/',
   getParentRoute: () => rootRouteImport,
 } as any)
 const GamesIndexRoute = GamesIndexRouteImport.update({
@@ -35,6 +91,16 @@ const NewsSlugRoute = NewsSlugRouteImport.update({
   path: '/news/$slug',
   getParentRoute: () => rootRouteImport,
 } as any)
+const MinecraftModsRoute = MinecraftModsRouteImport.update({
+  id: '/minecraft/mods',
+  path: '/minecraft/mods',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const MinecraftCommandsRoute = MinecraftCommandsRouteImport.update({
+  id: '/minecraft/commands',
+  path: '/minecraft/commands',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const GamesSlugRoute = GamesSlugRouteImport.update({
   id: '/games/$slug',
   path: '/games/$slug',
@@ -43,44 +109,186 @@ const GamesSlugRoute = GamesSlugRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/about': typeof AboutRoute
+  '/contact': typeof ContactRoute
+  '/disclaimer': typeof DisclaimerRoute
+  '/favorites': typeof FavoritesRoute
+  '/privacy': typeof PrivacyRoute
+  '/sitemap.xml': typeof SitemapDotxmlRoute
+  '/terms': typeof TermsRoute
   '/games/$slug': typeof GamesSlugRoute
+  '/minecraft/commands': typeof MinecraftCommandsRoute
+  '/minecraft/mods': typeof MinecraftModsRoute
   '/news/$slug': typeof NewsSlugRoute
   '/games/': typeof GamesIndexRoute
+  '/gta/': typeof GtaIndexRoute
+  '/minecraft/': typeof MinecraftIndexRoute
   '/news/': typeof NewsIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/about': typeof AboutRoute
+  '/contact': typeof ContactRoute
+  '/disclaimer': typeof DisclaimerRoute
+  '/favorites': typeof FavoritesRoute
+  '/privacy': typeof PrivacyRoute
+  '/sitemap.xml': typeof SitemapDotxmlRoute
+  '/terms': typeof TermsRoute
   '/games/$slug': typeof GamesSlugRoute
+  '/minecraft/commands': typeof MinecraftCommandsRoute
+  '/minecraft/mods': typeof MinecraftModsRoute
   '/news/$slug': typeof NewsSlugRoute
   '/games': typeof GamesIndexRoute
+  '/gta': typeof GtaIndexRoute
+  '/minecraft': typeof MinecraftIndexRoute
   '/news': typeof NewsIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/about': typeof AboutRoute
+  '/contact': typeof ContactRoute
+  '/disclaimer': typeof DisclaimerRoute
+  '/favorites': typeof FavoritesRoute
+  '/privacy': typeof PrivacyRoute
+  '/sitemap.xml': typeof SitemapDotxmlRoute
+  '/terms': typeof TermsRoute
   '/games/$slug': typeof GamesSlugRoute
+  '/minecraft/commands': typeof MinecraftCommandsRoute
+  '/minecraft/mods': typeof MinecraftModsRoute
   '/news/$slug': typeof NewsSlugRoute
   '/games/': typeof GamesIndexRoute
+  '/gta/': typeof GtaIndexRoute
+  '/minecraft/': typeof MinecraftIndexRoute
   '/news/': typeof NewsIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/games/$slug' | '/news/$slug' | '/games/' | '/news/'
+  fullPaths:
+    | '/'
+    | '/about'
+    | '/contact'
+    | '/disclaimer'
+    | '/favorites'
+    | '/privacy'
+    | '/sitemap.xml'
+    | '/terms'
+    | '/games/$slug'
+    | '/minecraft/commands'
+    | '/minecraft/mods'
+    | '/news/$slug'
+    | '/games/'
+    | '/gta/'
+    | '/minecraft/'
+    | '/news/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/games/$slug' | '/news/$slug' | '/games' | '/news'
-  id: '__root__' | '/' | '/games/$slug' | '/news/$slug' | '/games/' | '/news/'
+  to:
+    | '/'
+    | '/about'
+    | '/contact'
+    | '/disclaimer'
+    | '/favorites'
+    | '/privacy'
+    | '/sitemap.xml'
+    | '/terms'
+    | '/games/$slug'
+    | '/minecraft/commands'
+    | '/minecraft/mods'
+    | '/news/$slug'
+    | '/games'
+    | '/gta'
+    | '/minecraft'
+    | '/news'
+  id:
+    | '__root__'
+    | '/'
+    | '/about'
+    | '/contact'
+    | '/disclaimer'
+    | '/favorites'
+    | '/privacy'
+    | '/sitemap.xml'
+    | '/terms'
+    | '/games/$slug'
+    | '/minecraft/commands'
+    | '/minecraft/mods'
+    | '/news/$slug'
+    | '/games/'
+    | '/gta/'
+    | '/minecraft/'
+    | '/news/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AboutRoute: typeof AboutRoute
+  ContactRoute: typeof ContactRoute
+  DisclaimerRoute: typeof DisclaimerRoute
+  FavoritesRoute: typeof FavoritesRoute
+  PrivacyRoute: typeof PrivacyRoute
+  SitemapDotxmlRoute: typeof SitemapDotxmlRoute
+  TermsRoute: typeof TermsRoute
   GamesSlugRoute: typeof GamesSlugRoute
+  MinecraftCommandsRoute: typeof MinecraftCommandsRoute
+  MinecraftModsRoute: typeof MinecraftModsRoute
   NewsSlugRoute: typeof NewsSlugRoute
   GamesIndexRoute: typeof GamesIndexRoute
+  GtaIndexRoute: typeof GtaIndexRoute
+  MinecraftIndexRoute: typeof MinecraftIndexRoute
   NewsIndexRoute: typeof NewsIndexRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/terms': {
+      id: '/terms'
+      path: '/terms'
+      fullPath: '/terms'
+      preLoaderRoute: typeof TermsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/sitemap.xml': {
+      id: '/sitemap.xml'
+      path: '/sitemap.xml'
+      fullPath: '/sitemap.xml'
+      preLoaderRoute: typeof SitemapDotxmlRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/privacy': {
+      id: '/privacy'
+      path: '/privacy'
+      fullPath: '/privacy'
+      preLoaderRoute: typeof PrivacyRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/favorites': {
+      id: '/favorites'
+      path: '/favorites'
+      fullPath: '/favorites'
+      preLoaderRoute: typeof FavoritesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/disclaimer': {
+      id: '/disclaimer'
+      path: '/disclaimer'
+      fullPath: '/disclaimer'
+      preLoaderRoute: typeof DisclaimerRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/contact': {
+      id: '/contact'
+      path: '/contact'
+      fullPath: '/contact'
+      preLoaderRoute: typeof ContactRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/about': {
+      id: '/about'
+      path: '/about'
+      fullPath: '/about'
+      preLoaderRoute: typeof AboutRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/': {
       id: '/'
       path: '/'
@@ -93,6 +301,20 @@ declare module '@tanstack/react-router' {
       path: '/news'
       fullPath: '/news/'
       preLoaderRoute: typeof NewsIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/minecraft/': {
+      id: '/minecraft/'
+      path: '/minecraft'
+      fullPath: '/minecraft/'
+      preLoaderRoute: typeof MinecraftIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/gta/': {
+      id: '/gta/'
+      path: '/gta'
+      fullPath: '/gta/'
+      preLoaderRoute: typeof GtaIndexRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/games/': {
@@ -109,6 +331,20 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof NewsSlugRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/minecraft/mods': {
+      id: '/minecraft/mods'
+      path: '/minecraft/mods'
+      fullPath: '/minecraft/mods'
+      preLoaderRoute: typeof MinecraftModsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/minecraft/commands': {
+      id: '/minecraft/commands'
+      path: '/minecraft/commands'
+      fullPath: '/minecraft/commands'
+      preLoaderRoute: typeof MinecraftCommandsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/games/$slug': {
       id: '/games/$slug'
       path: '/games/$slug'
@@ -121,9 +357,20 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AboutRoute: AboutRoute,
+  ContactRoute: ContactRoute,
+  DisclaimerRoute: DisclaimerRoute,
+  FavoritesRoute: FavoritesRoute,
+  PrivacyRoute: PrivacyRoute,
+  SitemapDotxmlRoute: SitemapDotxmlRoute,
+  TermsRoute: TermsRoute,
   GamesSlugRoute: GamesSlugRoute,
+  MinecraftCommandsRoute: MinecraftCommandsRoute,
+  MinecraftModsRoute: MinecraftModsRoute,
   NewsSlugRoute: NewsSlugRoute,
   GamesIndexRoute: GamesIndexRoute,
+  GtaIndexRoute: GtaIndexRoute,
+  MinecraftIndexRoute: MinecraftIndexRoute,
   NewsIndexRoute: NewsIndexRoute,
 }
 export const routeTree = rootRouteImport
