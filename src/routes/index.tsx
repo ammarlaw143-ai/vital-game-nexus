@@ -7,7 +7,7 @@ import { news, featuredNews } from "@/lib/news";
 import heroImg from "@/assets/hero-cyber.jpg";
 import mcImg from "@/assets/hub-minecraft.jpg";
 import gtaImg from "@/assets/hub-gta.jpg";
-import { ArrowRight, ExternalLink, Play, Star, Flame, Trophy, Sparkles, Calendar } from "lucide-react";
+import { ArrowRight, Play, Flame, Trophy, Sparkles, Calendar } from "lucide-react";
 
 export const Route = createFileRoute("/")({
   head: () => ({
