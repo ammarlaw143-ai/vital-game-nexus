@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>Minecraft Hub — Nexus Gaming</title>
+<meta name="description" content="Curated Minecraft mods, the full command reference, tutorials and shaders."/>
+<link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="assets/css/styles.css"/>
+</head>
+<body>
+<div id="header"></div>
+
+<section class="hero" style="min-height:60vh">
+  <div class="hero-bg" style="background-image:url('assets/img/hub-minecraft.jpg')"></div>
+  <div class="hero-overlay"></div>
+  <div class="container hero-content">
+    <p class="eyebrow" style="color:var(--mc)"><span class="pulse" style="background:var(--mc);box-shadow:0 0 12px var(--mc)"></span>Minecraft Hub</p>
+    <h1>Build. Mine.<br/><span class="accent" style="color:var(--mc);text-shadow:0 0 30px var(--mc)">Conquer.</span></h1>
+    <p class="lead">Curated mods, the complete command reference, tutorials and shaders. Everything to push your world further.</p>
+    <div style="display:flex;gap:.75rem;margin-top:2rem;flex-wrap:wrap">
+      <a href="mods.html" class="btn btn-primary" style="background:var(--mc);color:#0a0e1a">Browse Mods</a>
+      <a href="commands.html" class="btn btn-outline">Command Reference</a>
+    </div>
+  </div>
+</section>
+
+<section class="container" style="padding:4rem 1rem">
+  <div class="grid grid-3">
+    ${["Mods","Commands","Shaders","Seeds","Tutorials","Server Setup"].map(t=>'').join('')}
+  </div>
+  <div class="grid-4" id="sections"></div>
+</section>
+
+<section class="container" style="padding:2rem 1rem 4rem">
+  <div class="section-head"><h2>Featured Mods</h2><a href="mods.html">All mods →</a></div>
+  <div class="grid-3" id="modsTeaser"></div>
+</section>
+
+<div id="footer"></div>
+<script src="assets/js/data.js"></script>
+<script src="assets/js/app.js"></script>
+<script>
+Nexus.mountLayout("minecraft.html");
+const sections = [
+  {t:"Mods",d:"Hand-picked mods across performance, tech, adventure and creatures.",h:"mods.html"},
+  {t:"Commands",d:"Every Minecraft command, syntax, examples, by category.",h:"commands.html"},
+  {t:"Shaders",d:"Top shader packs for realism, performance or stylized vibes.",h:"mods.html"},
+  {t:"Tutorials",d:"From your first redstone door to a fully automated farm.",h:"minecraft.html"},
+];
+document.getElementById("sections").innerHTML = sections.map(s=>`<a class="glass" href="${s.h}" style="display:block;padding:1.5rem;border-radius:.75rem;transition:border-color .2s" onmouseover="this.style.borderColor='var(--mc)'" onmouseout="this.style.borderColor=''"><h3 style="font-size:1.25rem;text-transform:uppercase;margin:0 0 .5rem;color:var(--mc)">${s.t}</h3><p style="color:rgba(255,255,255,.6);margin:0">${s.d}</p></a>`).join('');
+document.getElementById("modsTeaser").innerHTML = Nexus.mods.slice(0,6).map(m=>`<a class="glass" href="${m.officialUrl}" target="_blank" rel="noopener" style="display:block;padding:1.5rem;border-radius:.75rem">
+  <div style="display:flex;align-items:center;gap:.75rem;margin-bottom:.75rem"><span style="width:.75rem;height:.75rem;border-radius:50%;background:${m.accent};box-shadow:0 0 12px ${m.accent}"></span><span class="badge mc">${m.category}</span></div>
+  <h3 style="font-size:1.125rem;text-transform:uppercase;margin:0">${m.name}</h3>
+  <p style="color:rgba(255,255,255,.6);font-size:.875rem;margin:.5rem 0">${m.description}</p>
+  <p style="font-size:.625rem;text-transform:uppercase;letter-spacing:.2em;color:rgba(255,255,255,.4)">${m.downloads} downloads • ${m.version}</p>
+</a>`).join('');
+</script>
+</body>
+</html>

@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title id="pageTitle">Article — Nexus Gaming</title>
+<link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="assets/css/styles.css"/>
+</head>
+<body>
+<div id="header"></div>
+<main id="articlePage"></main>
+<div id="footer"></div>
+<script src="assets/js/data.js"></script>
+<script src="assets/js/app.js"></script>
+<script>
+Nexus.mountLayout("news.html");
+const slug = Nexus.qs("slug");
+const a = Nexus.findArticle(slug);
+const root = document.getElementById("articlePage");
+if (!a) {
+  root.innerHTML = `<div class="container" style="padding:6rem 1rem;text-align:center"><h1 style="font-size:3rem;text-transform:uppercase">Article not found</h1><p><a href="news.html" style="color:var(--neon)">← All news</a></p></div>`;
+} else {
+  document.getElementById("pageTitle").textContent = `${a.title} — Nexus Gaming`;
+  const related = Nexus.news.filter(n=>n.slug!==a.slug && n.category===a.category).slice(0,3);
+  root.innerHTML = `
+    <article class="article">
+      <a href="news.html" style="font-size:.7rem;text-transform:uppercase;letter-spacing:.2em;color:rgba(255,255,255,.6)">← All News</a>
+      <span class="badge violet" style="margin-top:1.25rem;display:inline-block">${a.category}</span>
+      <h1>${a.title}</h1>
+      <p class="byline">By ${a.author} • ${new Date(a.date).toLocaleDateString()} • ${a.readTime} min read</p>
+      <div class="cover grid-bg" style="background:linear-gradient(135deg,var(--violet),var(--neon))"></div>
+      <div class="body">
+        <p>${a.excerpt}</p>
+        ${a.body.map(p=>`<p>${p}</p>`).join('')}
+      </div>
+    </article>
+    ${related.length?`<section class="container" style="padding:4rem 1rem;border-top:1px solid var(--border)">
+      <h2 style="font-size:1.875rem;text-transform:uppercase;margin:0 0 1.5rem">Related News</h2>
+      <div class="grid-3">${related.map(n=>Nexus.newsCardHTML(n)).join('')}</div>
+    </section>`:''}
+  `;
+}
+</script>
+</body>
+</html>
