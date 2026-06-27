@@ -22,18 +22,22 @@
   <h2 style="font-size:1.875rem;text-transform:uppercase">Our Mission</h2>
   <p style="color:rgba(255,255,255,.7);font-size:1.125rem;line-height:1.7">We exist to help every gamer find their next obsession — whether that's the next AAA blockbuster, a hidden indie gem, the perfect Minecraft mod, or the most efficient GTA Online business. We connect players to <strong style="color:#fff">official sources</strong> with editorial integrity at the center of everything we publish.</p>
 
-  <div class="grid grid-2" style="margin-top:3rem">
-    ${["Gamers First|Every decision is made through the lens of what serves the player.","Official Only|We link to legitimate stores and trusted creators — never pirated content.","Quality Coverage|Editorial standards on par with the biggest names in games journalism.","Community Driven|Our roadmap is shaped by the community we serve."].map(s=>{const [t,d]=s.split("|");return `<div class="glass" style="padding:1.5rem;border-radius:.75rem"><h3 style="font-size:1.125rem;text-transform:uppercase;margin:0">${t}</h3><p style="color:rgba(255,255,255,.6);font-size:.875rem;margin:.5rem 0 0">${d}</p></div>`}).join('')}
-  </div>
-
+  <div class="grid grid-2" id="values" style="margin-top:3rem"></div>
   <h2 style="font-size:1.875rem;text-transform:uppercase;margin-top:3rem">By The Numbers</h2>
-  <div class="grid grid-4" style="margin-top:1rem">
-    ${[["1,200+","Games"],["890","MC Mods"],["45K","Daily Readers"],["24/7","Live Updates"]].map(([n,l])=>`<div class="spec-tile"><div class="num">${n}</div><div class="lab">${l}</div></div>`).join('')}
-  </div>
+  <div class="grid grid-4" id="numbers" style="margin-top:1rem"></div>
 </section>
 <div id="footer"></div>
 <script src="assets/js/data.js"></script>
 <script src="assets/js/app.js"></script>
-<script>Nexus.mountLayout("about.html");</script>
+<script>
+Nexus.mountLayout("about.html");
+document.getElementById("values").innerHTML = [
+  ["Gamers First","Every decision is made through the lens of what serves the player."],
+  ["Official Only","We link to legitimate stores and trusted creators — never pirated content."],
+  ["Quality Coverage","Editorial standards on par with the biggest names in games journalism."],
+  ["Community Driven","Our roadmap is shaped by the community we serve."]
+].map(([t,d])=>`<div class="glass" style="padding:1.5rem;border-radius:.75rem"><h3 style="font-size:1.125rem;text-transform:uppercase;margin:0">${t}</h3><p style="color:rgba(255,255,255,.6);font-size:.875rem;margin:.5rem 0 0">${d}</p></div>`).join('');
+document.getElementById("numbers").innerHTML = [["1,200+","Games"],["890","MC Mods"],["45K","Daily Readers"],["24/7","Live Updates"]].map(([n,l])=>`<div class="spec-tile"><div class="num">${n}</div><div class="lab">${l}</div></div>`).join('');
+</script>
 </body>
 </html>
