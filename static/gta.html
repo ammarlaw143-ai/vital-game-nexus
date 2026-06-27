@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>GTA Hub — Nexus Gaming</title>
+<meta name="description" content="GTA V, GTA Online and the road to GTA VI — guides, leaks and the latest news."/>
+<link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="assets/css/styles.css"/>
+</head>
+<body>
+<div id="header"></div>
+<section class="hero" style="min-height:60vh">
+  <div class="hero-bg" style="background-image:url('assets/img/hub-gta.jpg')"></div>
+  <div class="hero-overlay"></div>
+  <div class="container hero-content">
+    <p class="eyebrow" style="color:var(--gta)"><span class="pulse" style="background:var(--gta);box-shadow:0 0 12px var(--gta)"></span>GTA Hub</p>
+    <h1>Los Santos to<br/><span class="accent" style="color:var(--gta);text-shadow:0 0 30px var(--gta)">Vice City.</span></h1>
+    <p class="lead">Guides, cheats, money methods, and full coverage of the road to GTA VI.</p>
+    <div style="display:flex;gap:.75rem;margin-top:2rem;flex-wrap:wrap">
+      <a href="game.html?slug=gta-v" class="btn btn-primary" style="background:var(--gta);color:#0a0e1a">GTA V</a>
+      <a href="game.html?slug=gta-vi" class="btn btn-outline">GTA VI</a>
+    </div>
+  </div>
+</section>
+
+<section class="container" style="padding:4rem 1rem">
+  <div class="section-head"><h2>What's Inside</h2></div>
+  <div class="grid grid-3" id="topics"></div>
+</section>
+
+<section class="container" style="padding:2rem 1rem 4rem">
+  <div class="section-head"><h2>GTA Games</h2><a href="games.html">All games →</a></div>
+  <div class="grid-5" id="gtaGames"></div>
+</section>
+
+<section class="container" style="padding:0 1rem 4rem">
+  <div class="glass" style="padding:1.5rem;border-radius:.75rem;border-left:3px solid var(--gta)">
+    <p style="color:rgba(255,255,255,.7);font-size:.875rem;margin:0">Heads up: We only link to official Rockstar Games sources and licensed retailers. We don't host or endorse modded online lobbies.</p>
+  </div>
+</section>
+
+<div id="footer"></div>
+<script src="assets/js/data.js"></script>
+<script src="assets/js/app.js"></script>
+<script>
+Nexus.mountLayout("gta.html");
+document.getElementById("topics").innerHTML = [
+  ["GTA V Story Walkthroughs","Full mission guides, gold-medal tips, and 100% completion checklist."],
+  ["GTA Online Money Methods","Best legit grinds, heist payouts, and weekly bonuses tracker."],
+  ["Cheat Codes & Console Inputs","Every PC, PlayStation and Xbox cheat — by category."],
+  ["GTA VI Coverage","Every confirmed detail, trailer breakdown, and credible leak."],
+  ["Vehicle Database","Top cars, planes and boats for every play style."],
+  ["Mods & Trainers (Single-Player)","Safe, single-player-only mod tutorials linked to official sources."]
+].map(([t,d])=>`<div class="glass" style="padding:1.5rem;border-radius:.75rem"><h3 style="font-size:1.125rem;text-transform:uppercase;margin:0;color:var(--gta)">${t}</h3><p style="color:rgba(255,255,255,.6);margin:.5rem 0 0">${d}</p></div>`).join('');
+document.getElementById("gtaGames").innerHTML = Nexus.games.filter(g=>g.slug.startsWith("gta")).map(Nexus.gameCardHTML).join('');
+</script>
+</body>
+</html>

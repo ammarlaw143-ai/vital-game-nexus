@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>Nexus Gaming — Where Every Gamer Belongs</title>
+<meta name="description" content="The ultimate destination for gaming news, guides, reviews and the world's biggest game database. Minecraft hub, GTA section, and daily industry briefings."/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="assets/css/styles.css"/>
+</head>
+<body>
+<div id="header"></div>
+
+<section class="hero">
+  <div class="hero-bg" style="background-image:url('assets/img/hero-cyber.jpg')"></div>
+  <div class="hero-overlay"></div>
+  <div class="container hero-content">
+    <p class="eyebrow"><span class="pulse"></span>Live • Always Updated</p>
+    <h1>Where Every<br/><span class="accent">Gamer Belongs.</span></h1>
+    <p class="lead">News, guides, reviews and the world's biggest game database — built for players, by players.</p>
+    <div style="display:flex;gap:.75rem;margin-top:2rem;flex-wrap:wrap">
+      <a href="games.html" class="btn btn-primary">Browse Games</a>
+      <a href="news.html" class="btn btn-outline">Latest News</a>
+    </div>
+  </div>
+</section>
+
+<section class="container" style="padding:4rem 1rem">
+  <div class="section-head"><h2>Trending Now</h2><a href="games.html?filter=trending">View all →</a></div>
+  <div class="grid-5" id="trending"></div>
+</section>
+
+<section class="container" style="padding:2rem 1rem 4rem">
+  <div class="section-head"><h2>Top Rated</h2><a href="games.html?filter=top-rated">View all →</a></div>
+  <div class="grid-5" id="topRated"></div>
+</section>
+
+<section class="container" style="padding:2rem 1rem">
+  <div class="grid grid-2" style="gap:1.5rem">
+    <a class="hub-card" style="background-image:linear-gradient(135deg,rgba(0,0,0,.4),rgba(0,0,0,.7)),url('assets/img/hub-minecraft.jpg')" href="minecraft.html">
+      <div class="veil"></div>
+      <div class="body">
+        <span class="badge mc">Minecraft Hub</span>
+        <h3>Mods, Commands & Worlds</h3>
+        <p>Curated mods, full command reference, tutorials, and seeds — everything to push your world further.</p>
+      </div>
+    </a>
+    <a class="hub-card" style="background-image:linear-gradient(135deg,rgba(0,0,0,.4),rgba(0,0,0,.7)),url('assets/img/hub-gta.jpg')" href="gta.html">
+      <div class="veil"></div>
+      <div class="body">
+        <span class="badge gta">GTA Section</span>
+        <h3>Los Santos to Vice City</h3>
+        <p>GTA V, Online, and the road to GTA VI — guides, cheats, money methods, and the latest leaks.</p>
+      </div>
+    </a>
+  </div>
+</section>
+
+<section class="container" style="padding:4rem 1rem">
+  <div class="section-head"><h2>The Briefing</h2><a href="news.html">All news →</a></div>
+  <div id="featuredNews" style="margin-bottom:1.5rem"></div>
+  <div class="grid-3" id="newsGrid"></div>
+</section>
+
+<section class="container" style="padding:2rem 1rem">
+  <div class="section-head"><h2>New & Upcoming</h2><a href="games.html?filter=upcoming">All upcoming →</a></div>
+  <div class="grid-5" id="upcoming"></div>
+</section>
+
+<section class="container" style="padding:4rem 1rem">
+  <div class="grid grid-4" id="stats"></div>
+</section>
+
+<section class="container" style="padding:4rem 1rem">
+  <div class="glass" style="padding:3rem;border-radius:1rem;text-align:center">
+    <p class="eyebrow" style="justify-content:center">Newsletter</p>
+    <h2 style="font-size:clamp(1.875rem,4vw,2.5rem);text-transform:uppercase;margin:.5rem 0">Get the daily briefing</h2>
+    <p style="color:rgba(255,255,255,.6);max-width:32rem;margin:1rem auto">One email a day with the biggest gaming stories, hand-picked by our editors.</p>
+    <form onsubmit="event.preventDefault();this.querySelector('button').textContent='Subscribed ✓'" style="display:flex;gap:.5rem;max-width:28rem;margin:1.5rem auto 0;flex-wrap:wrap;justify-content:center">
+      <input class="input" type="email" required placeholder="you@example.com" style="flex:1;min-width:14rem"/>
+      <button class="btn btn-primary" type="submit">Subscribe</button>
+    </form>
+  </div>
+</section>
+
+<div id="footer"></div>
+<script src="assets/js/data.js"></script>
+<script src="assets/js/app.js"></script>
+<script>
+Nexus.mountLayout("index.html");
+document.getElementById("trending").innerHTML = Nexus.games.filter(g=>g.trending).slice(0,5).map(Nexus.gameCardHTML).join('');
+document.getElementById("topRated").innerHTML = Nexus.games.filter(g=>g.topRated).sort((a,b)=>b.rating-a.rating).slice(0,5).map(Nexus.gameCardHTML).join('');
+document.getElementById("upcoming").innerHTML = Nexus.games.filter(g=>g.upcoming).slice(0,5).map(Nexus.gameCardHTML).join('');
+const feat = Nexus.news.find(n=>n.featured);
+if (feat) document.getElementById("featuredNews").innerHTML = Nexus.newsCardHTML(feat,"feature");
+document.getElementById("newsGrid").innerHTML = Nexus.news.filter(n=>!feat||n.slug!==feat.slug).slice(0,6).map(n=>Nexus.newsCardHTML(n)).join('');
+document.getElementById("stats").innerHTML = [["1,200+","Games Indexed"],["890","Minecraft Mods"],["45K","Daily Readers"],["24/7","Live Updates"]].map(([n,l])=>`<div class="spec-tile"><div class="num">${n}</div><div class="lab">${l}</div></div>`).join('');
+</script>
+</body>
+</html>

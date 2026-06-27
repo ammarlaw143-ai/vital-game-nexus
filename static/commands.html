@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>Minecraft Commands — Nexus Gaming</title>
+<link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@500;600;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="assets/css/styles.css"/>
+</head>
+<body>
+<div id="header"></div>
+<section class="page-header">
+  <div class="grid-bg"></div><div class="fade"></div>
+  <div class="container inner">
+    <p class="eyebrow" style="color:var(--mc)">Reference</p>
+    <h1>Command Reference</h1>
+    <div class="bar bg-mc"></div>
+    <p>Every essential Minecraft command, with syntax and a working example. Filter by category or search.</p>
+  </div>
+</section>
+<section class="container" style="padding:2.5rem 1rem">
+  <input class="input" id="cmdSearch" placeholder="Search commands…" style="max-width:24rem;margin-bottom:1rem"/>
+  <div class="chips" id="catChips"></div>
+  <div id="cmdList" style="display:grid;gap:.75rem"></div>
+</section>
+<div id="footer"></div>
+<script src="assets/js/data.js"></script>
+<script src="assets/js/app.js"></script>
+<script>
+Nexus.mountLayout("minecraft.html");
+const cats = ["All", ...Array.from(new Set(Nexus.cmds.map(c=>c.category)))];
+let cat="All", q="";
+function render(){
+  document.getElementById("catChips").innerHTML = cats.map(c=>`<button class="chip ${cat===c?'active':''}" data-c="${c}" style="${cat===c?'background:var(--mc);border-color:var(--mc);color:#0a0e1a':''}">${c}</button>`).join('');
+  const list = Nexus.cmds.filter(x=>(cat==="All"||x.category===cat) && (!q||x.command.toLowerCase().includes(q)||x.description.toLowerCase().includes(q)));
+  document.getElementById("cmdList").innerHTML = list.map(c=>`<div class="glass" style="padding:1.25rem;border-radius:.5rem">
+    <div style="display:flex;justify-content:space-between;align-items:center;gap:1rem;flex-wrap:wrap">
+      <code style="font-family:'JetBrains Mono',monospace;font-size:1.05rem;color:var(--mc);font-weight:700">${c.command}</code>
+      <span class="badge mc">${c.category}</span>
+    </div>
+    <p style="color:rgba(255,255,255,.7);margin:.5rem 0">${c.description}</p>
+    <code style="display:block;font-family:'JetBrains Mono',monospace;font-size:.85rem;color:rgba(255,255,255,.6);background:rgba(0,0,0,.4);padding:.6rem .85rem;border-radius:.35rem;margin-top:.5rem">${c.example}</code>
+  </div>`).join('') || `<p style="color:rgba(255,255,255,.5)">No commands match.</p>`;
+}
+render();
+document.addEventListener("click", e=>{const b=e.target.closest("[data-c]");if(b){cat=b.dataset.c;render();}});
+document.getElementById("cmdSearch").addEventListener("input", e=>{q=e.target.value.toLowerCase();render();});
+</script>
+</body>
+</html>

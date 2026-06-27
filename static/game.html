@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title id="pageTitle">Game — Nexus Gaming</title>
+<link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="assets/css/styles.css"/>
+</head>
+<body>
+<div id="header"></div>
+<main id="gamePage"></main>
+<div id="footer"></div>
+<script src="assets/js/data.js"></script>
+<script src="assets/js/app.js"></script>
+<script>
+Nexus.mountLayout("games.html");
+const slug = Nexus.qs("slug");
+const g = Nexus.findGame(slug);
+const root = document.getElementById("gamePage");
+if (!g) {
+  root.innerHTML = `<div class="container" style="padding:6rem 1rem;text-align:center"><h1 style="font-size:3rem;text-transform:uppercase">Game not found</h1><p style="margin-top:1rem;color:rgba(255,255,255,.6)"><a href="games.html" style="color:var(--neon)">← Back to games</a></p></div>`;
+} else {
+  document.getElementById("pageTitle").textContent = `${g.title} — Nexus Gaming`;
+  const price = g.price === "Free" ? "Free to play" : `$${g.price.toFixed(2)}`;
+  const fav = window.NexusFavs.has(g.slug);
+  root.innerHTML = `
+    <section style="position:relative;overflow:hidden;min-height:60vh">
+      <div style="position:absolute;inset:0;background:${g.gradient};filter:saturate(1.2)"></div>
+      <div style="position:absolute;inset:0;background:linear-gradient(180deg,rgba(13,15,25,.3),rgba(13,15,25,.95))"></div>
+      <div style="position:absolute;inset:0" class="grid-bg"></div>
+      <div class="container" style="position:relative;padding:5rem 1rem">
+        <a href="games.html" style="font-size:.7rem;text-transform:uppercase;letter-spacing:.2em;color:rgba(255,255,255,.7)">← All Games</a>
+        <p class="eyebrow" style="margin-top:1.5rem">${g.developer}</p>
+        <h1 style="font-size:clamp(2.5rem,6vw,4.5rem);text-transform:uppercase;line-height:1;margin:0">${g.title}</h1>
+        <div style="display:flex;flex-wrap:wrap;gap:.5rem;margin-top:1.5rem">${g.genres.map(x=>`<span class="badge neon">${x}</span>`).join('')}</div>
+        <div style="display:flex;flex-wrap:wrap;gap:.75rem;margin-top:2rem">
+          <a href="${g.storeUrl}" target="_blank" rel="noopener" class="btn btn-primary">Get on Official Store</a>
+          <a href="${g.officialUrl}" target="_blank" rel="noopener" class="btn btn-outline">Official Site</a>
+          <button class="btn btn-outline" data-fav="${g.slug}">${fav?'★ Favorited':'☆ Add to Favorites'}</button>
+        </div>
+      </div>
+    </section>
+
+    <section class="container" style="padding:4rem 1rem;display:grid;grid-template-columns:1fr;gap:3rem">
+      <div>
+        <h2 style="font-size:1.875rem;text-transform:uppercase;margin:0 0 1rem">About</h2>
+        <p style="color:rgba(255,255,255,.8);font-size:1.125rem;line-height:1.7">${g.description}</p>
+        <h2 style="font-size:1.5rem;text-transform:uppercase;margin:2.5rem 0 1rem">Features</h2>
+        <ul style="color:rgba(255,255,255,.7);line-height:1.85;padding-left:1.25rem">
+          <li>Stunning next-gen visuals</li>
+          <li>Massive open world to explore</li>
+          <li>Cross-platform multiplayer support</li>
+          <li>Regular post-launch content updates</li>
+        </ul>
+      </div>
+      <div>
+        <div class="glass" style="padding:1.5rem;border-radius:.75rem">
+          <h3 style="font-size:.75rem;text-transform:uppercase;letter-spacing:.2em;margin:0 0 1rem;color:rgba(255,255,255,.6)">Quick Info</h3>
+          ${[
+            ["Price",price],["Rating", g.rating>0?`${g.rating.toFixed(1)} / 10`:"Unrated"],
+            ["Release",new Date(g.releaseDate).toLocaleDateString()],["Developer",g.developer],
+            ["Publisher",g.publisher],["Platforms",g.platforms.join(", ")]
+          ].map(([k,v])=>`<div style="display:flex;justify-content:space-between;padding:.5rem 0;border-bottom:1px solid var(--border);font-size:.875rem"><span style="color:rgba(255,255,255,.5)">${k}</span><span style="font-weight:600">${v}</span></div>`).join('')}
+        </div>
+        <div class="glass" style="padding:1.5rem;border-radius:.75rem;margin-top:1.5rem">
+          <h3 style="font-size:.75rem;text-transform:uppercase;letter-spacing:.2em;margin:0 0 1rem;color:rgba(255,255,255,.6)">System Requirements</h3>
+          ${[["CPU","Intel Core i5-10400 / AMD Ryzen 5 3600"],["GPU","NVIDIA RTX 2060 / AMD RX 5700"],["RAM","16 GB"],["Storage","75 GB SSD"]].map(([k,v])=>`<div style="padding:.5rem 0;border-bottom:1px solid var(--border)"><div style="font-size:.65rem;text-transform:uppercase;letter-spacing:.2em;color:rgba(255,255,255,.4)">${k}</div><div style="font-size:.875rem;margin-top:.15rem">${v}</div></div>`).join('')}
+        </div>
+      </div>
+    </section>
+
+    <section class="container" style="padding:0 1rem 4rem">
+      <h2 style="font-size:1.875rem;text-transform:uppercase;margin:0 0 1.5rem">You may also like</h2>
+      <div class="grid-5">${Nexus.games.filter(x=>x.slug!==g.slug && x.genres.some(z=>g.genres.includes(z))).slice(0,5).map(Nexus.gameCardHTML).join('')}</div>
+    </section>
+  `;
+  // 2-col on larger screens
+  const sty = document.createElement("style");
+  sty.textContent = `@media(min-width:900px){#gamePage section:nth-of-type(2){grid-template-columns:2fr 1fr !important}}`;
+  document.head.appendChild(sty);
+}
+</script>
+</body>
+</html>

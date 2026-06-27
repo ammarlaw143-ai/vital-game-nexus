@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>Game Database — Nexus Gaming</title>
+<meta name="description" content="Browse the complete Nexus Gaming database. Filter by platform, genre, price and rating."/>
+<link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="assets/css/styles.css"/>
+</head>
+<body>
+<div id="header"></div>
+<section class="page-header">
+  <div class="grid-bg"></div><div class="fade"></div>
+  <div class="container inner">
+    <p class="eyebrow">Game Database</p>
+    <h1>Every Game,<br/>One Place.</h1>
+    <div class="bar bg-neon"></div>
+    <p>Filter through our database of every major release. Click any card for details and official store links.</p>
+  </div>
+</section>
+
+<section class="container" style="padding:2.5rem 1rem">
+  <div style="display:grid;grid-template-columns:1fr;gap:1rem;margin-bottom:2rem" class="filters">
+    <div>
+      <span class="label">Platform</span>
+      <div class="chips" id="platChips"></div>
+    </div>
+    <div>
+      <span class="label">Genre</span>
+      <div class="chips" id="genreChips"></div>
+    </div>
+    <div style="display:flex;gap:1rem;flex-wrap:wrap;align-items:end">
+      <div style="flex:1;min-width:14rem"><span class="label">Sort by</span>
+        <select class="select" id="sortSel">
+          <option value="popular">Most Popular</option>
+          <option value="rating">Highest Rated</option>
+          <option value="newest">Newest</option>
+          <option value="price-asc">Price: Low to High</option>
+          <option value="price-desc">Price: High to Low</option>
+        </select>
+      </div>
+      <div style="flex:1;min-width:14rem"><span class="label">Price</span>
+        <select class="select" id="priceSel">
+          <option value="all">All</option><option value="free">Free</option><option value="paid">Paid</option>
+        </select>
+      </div>
+    </div>
+  </div>
+  <p id="countLabel" style="font-size:.7rem;text-transform:uppercase;letter-spacing:.2em;color:rgba(255,255,255,.5);margin-bottom:1rem"></p>
+  <div class="grid-5" id="gamesGrid"></div>
+</section>
+
+<div id="footer"></div>
+<script src="assets/js/data.js"></script>
+<script src="assets/js/app.js"></script>
+<script>
+Nexus.mountLayout("games.html");
+const PLATS = ["All","PC","PS5","Xbox","Switch","Mobile"];
+const GENRES = ["All", ...Array.from(new Set(Nexus.games.flatMap(g=>g.genres))).sort()];
+const state = {
+  platform: Nexus.qs("platform") || "All",
+  genre: "All",
+  price: "all",
+  sort: "popular",
+  filter: Nexus.qs("filter") || null,
+};
+function renderChips(){
+  document.getElementById("platChips").innerHTML = PLATS.map(p=>`<button class="chip ${state.platform===p?'active':''}" data-p="${p}">${p}</button>`).join('');
+  document.getElementById("genreChips").innerHTML = GENRES.map(g=>`<button class="chip ${state.genre===g?'active':''}" data-g="${g}">${g}</button>`).join('');
+}
+function applyFilters(){
+  let list = Nexus.games.slice();
+  if (state.filter === "trending") list = list.filter(g=>g.trending);
+  if (state.filter === "top-rated") list = list.filter(g=>g.topRated);
+  if (state.filter === "new") list = list.filter(g=>g.newRelease);
+  if (state.filter === "upcoming") list = list.filter(g=>g.upcoming);
+  if (state.filter === "free") list = list.filter(g=>g.price === "Free");
+  if (state.platform !== "All") list = list.filter(g=>g.platforms.includes(state.platform));
+  if (state.genre !== "All") list = list.filter(g=>g.genres.includes(state.genre));
+  if (state.price === "free") list = list.filter(g=>g.price === "Free");
+  if (state.price === "paid") list = list.filter(g=>g.price !== "Free");
+  const cmp = {
+    popular: (a,b)=>b.popularity-a.popularity,
+    rating: (a,b)=>b.rating-a.rating,
+    newest: (a,b)=>new Date(b.releaseDate)-new Date(a.releaseDate),
+    "price-asc": (a,b)=>(a.price==="Free"?0:a.price)-(b.price==="Free"?0:b.price),
+    "price-desc": (a,b)=>(b.price==="Free"?0:b.price)-(a.price==="Free"?0:a.price),
+  }[state.sort];
+  list.sort(cmp);
+  document.getElementById("countLabel").textContent = `${list.length} games`;
+  document.getElementById("gamesGrid").innerHTML = list.map(Nexus.gameCardHTML).join('') || `<p style="grid-column:1/-1;color:rgba(255,255,255,.5)">No games match these filters.</p>`;
+}
+renderChips(); applyFilters();
+document.addEventListener("click", (e) => {
+  const p = e.target.closest("[data-p]"); if (p) { state.platform = p.dataset.p; state.filter=null; renderChips(); applyFilters(); }
+  const g = e.target.closest("[data-g]"); if (g) { state.genre = g.dataset.g; state.filter=null; renderChips(); applyFilters(); }
+});
+document.getElementById("sortSel").addEventListener("change", e => { state.sort = e.target.value; applyFilters(); });
+document.getElementById("priceSel").addEventListener("change", e => { state.price = e.target.value; applyFilters(); });
+</script>
+</body>
+</html>

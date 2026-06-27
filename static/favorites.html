@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>Favorites — Nexus Gaming</title>
+<link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="assets/css/styles.css"/>
+</head>
+<body>
+<div id="header"></div>
+<section class="page-header">
+  <div class="grid-bg"></div><div class="fade"></div>
+  <div class="container inner">
+    <p class="eyebrow">Your Library</p>
+    <h1>Favorites</h1>
+    <div class="bar bg-violet"></div>
+    <p>Games you've saved. Stored locally in your browser — no account needed.</p>
+  </div>
+</section>
+<section class="container" style="padding:3rem 1rem">
+  <div class="grid-5" id="favList"></div>
+  <p id="empty" style="display:none;color:rgba(255,255,255,.6)">No favorites yet. Browse the <a href="games.html" style="color:var(--neon)">games database</a> and tap the heart on any cover.</p>
+</section>
+<div id="footer"></div>
+<script src="assets/js/data.js"></script>
+<script src="assets/js/app.js"></script>
+<script>
+Nexus.mountLayout("favorites.html");
+function render(){
+  const slugs = window.NexusFavs.get();
+  const list = Nexus.games.filter(g=>slugs.includes(g.slug));
+  document.getElementById("favList").innerHTML = list.map(Nexus.gameCardHTML).join('');
+  document.getElementById("empty").style.display = list.length?'none':'block';
+}
+render();
+document.addEventListener("click", e=>{ if(e.target.closest("[data-fav]")) setTimeout(render,10); });
+</script>
+</body>
+</html>

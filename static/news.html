@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>Gaming News — Nexus Gaming</title>
+<meta name="description" content="The latest gaming news, leaks, reviews and announcements — updated daily."/>
+<link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="assets/css/styles.css"/>
+</head>
+<body>
+<div id="header"></div>
+<section class="page-header">
+  <div class="grid-bg"></div><div class="fade"></div>
+  <div class="container inner">
+    <p class="eyebrow" style="color:var(--violet)">The Briefing</p>
+    <h1>Gaming News</h1>
+    <div class="bar bg-violet"></div>
+    <p>The latest industry news, leaks, reviews, and announcements — updated daily.</p>
+  </div>
+</section>
+<section class="container" style="padding:2.5rem 1rem">
+  <div class="chips" id="catChips"></div>
+  <div id="feature" style="margin-bottom:2rem"></div>
+  <div class="grid-3" id="newsList"></div>
+</section>
+<div id="footer"></div>
+<script src="assets/js/data.js"></script>
+<script src="assets/js/app.js"></script>
+<script>
+Nexus.mountLayout("news.html");
+const cats = ["All", ...Array.from(new Set(Nexus.news.map(n=>n.category)))];
+let active = "All";
+function render(){
+  document.getElementById("catChips").innerHTML = cats.map(c=>`<button class="chip violet ${active===c?'active':''}" data-c="${c}">${c}</button>`).join('');
+  const filtered = active === "All" ? Nexus.news : Nexus.news.filter(n=>n.category===active);
+  const [first, ...rest] = filtered;
+  document.getElementById("feature").innerHTML = first ? Nexus.newsCardHTML(first,"feature") : "";
+  document.getElementById("newsList").innerHTML = rest.map(n=>Nexus.newsCardHTML(n)).join('');
+}
+render();
+document.addEventListener("click", e => { const b = e.target.closest("[data-c]"); if(b){active=b.dataset.c;render();}});
+</script>
+</body>
+</html>

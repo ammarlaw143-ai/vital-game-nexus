@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>Minecraft Mods — Nexus Gaming</title>
+<link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="assets/css/styles.css"/>
+</head>
+<body>
+<div id="header"></div>
+<section class="page-header">
+  <div class="grid-bg"></div><div class="fade"></div>
+  <div class="container inner">
+    <p class="eyebrow" style="color:var(--mc)">Minecraft</p>
+    <h1>Curated Mods</h1>
+    <div class="bar bg-mc"></div>
+    <p>Hand-picked mods across performance, tech, world generation, adventure and creatures. Every link points to the official source.</p>
+  </div>
+</section>
+<section class="container" style="padding:2.5rem 1rem">
+  <div class="chips" id="catChips"></div>
+  <div class="grid-3" id="modsGrid"></div>
+</section>
+<div id="footer"></div>
+<script src="assets/js/data.js"></script>
+<script src="assets/js/app.js"></script>
+<script>
+Nexus.mountLayout("minecraft.html");
+const cats = ["All", ...Array.from(new Set(Nexus.mods.map(m=>m.category)))];
+let cat = "All";
+function render(){
+  document.getElementById("catChips").innerHTML = cats.map(c=>`<button class="chip ${cat===c?'active':''}" data-c="${c}" style="${cat===c?'background:var(--mc);border-color:var(--mc);color:#0a0e1a':''}">${c}</button>`).join('');
+  const list = cat==="All" ? Nexus.mods : Nexus.mods.filter(m=>m.category===cat);
+  document.getElementById("modsGrid").innerHTML = list.map(m=>`<a class="glass" href="${m.officialUrl}" target="_blank" rel="noopener" style="display:block;padding:1.5rem;border-radius:.75rem">
+    <div style="display:flex;align-items:center;gap:.75rem;margin-bottom:.75rem"><span style="width:.75rem;height:.75rem;border-radius:50%;background:${m.accent};box-shadow:0 0 12px ${m.accent}"></span><span class="badge mc">${m.category}</span></div>
+    <h3 style="font-size:1.25rem;text-transform:uppercase;margin:0">${m.name}</h3>
+    <p style="color:rgba(255,255,255,.5);font-size:.75rem;margin:.25rem 0 .75rem">by ${m.author}</p>
+    <p style="color:rgba(255,255,255,.7);font-size:.875rem;margin:0 0 .75rem">${m.description}</p>
+    <p style="font-size:.625rem;text-transform:uppercase;letter-spacing:.2em;color:rgba(255,255,255,.4)">${m.downloads} downloads • ${m.version}</p>
+  </a>`).join('');
+}
+render();
+document.addEventListener("click", e=>{const b=e.target.closest("[data-c]");if(b){cat=b.dataset.c;render();}});
+</script>
+</body>
+</html>
