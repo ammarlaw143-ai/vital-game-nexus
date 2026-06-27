@@ -31,9 +31,7 @@
 
 <section class="container" style="padding:2rem 1rem 4rem">
   <div class="section-head"><h2>GTA Games</h2><a href="games.html">All games →</a></div>
-  <div class="grid-5">
-    <div id="gtaGames"></div>
-  </div>
+  <div class="grid-5" id="gtaGames"></div>
 </section>
 
 <section class="container" style="padding:0 1rem 4rem">
@@ -55,7 +53,7 @@ document.getElementById("topics").innerHTML = [
   ["Vehicle Database","Top cars, planes and boats for every play style."],
   ["Mods & Trainers (Single-Player)","Safe, single-player-only mod tutorials linked to official sources."]
 ].map(([t,d])=>`<div class="glass" style="padding:1.5rem;border-radius:.75rem"><h3 style="font-size:1.125rem;text-transform:uppercase;margin:0;color:var(--gta)">${t}</h3><p style="color:rgba(255,255,255,.6);margin:.5rem 0 0">${d}</p></div>`).join('');
-document.querySelector("#gtaGames").outerHTML = Nexus.games.filter(g=>g.slug.startsWith("gta")).map(Nexus.gameCardHTML).join('');
+document.getElementById("gtaGames").innerHTML = Nexus.games.filter(g=>g.slug.startsWith("gta")).map(Nexus.gameCardHTML).join('');
 </script>
 </body>
 </html>
