@@ -84,7 +84,7 @@
     const fav = window.NexusFavs.has(g.slug);
     return `<a class="game-card" href="game.html?slug=${g.slug}">
       <div class="cover">
-        <img class="cover-img" src="${imgFor('nexus-'+g.slug, 480, 640)}" alt="${g.title}" loading="lazy"/>
+        <img class="cover-img" src="${gameImg(g, 480, 640)}" alt="${g.title}" loading="lazy"/>
         <div class="cover-grad" style="background:${g.gradient};mix-blend-mode:overlay;opacity:.55"></div>
         <div class="cover-grid grid-bg"></div>
         <div class="cover-fade"></div>
@@ -106,7 +106,7 @@
     const v = variant || "default";
     if (v === "compact") {
       return `<a class="news-compact" href="article.html?slug=${a.slug}">
-        <img class="thumb" src="${imgFor('news-'+a.slug, 160, 160)}" alt="${a.title}"/>
+        <img class="thumb" src="${newsImg(a, 160, 160)}" alt="${a.title}"/>
         <div style="min-width:0">
           <span class="badge ${a.tag||'neon'}">${a.category}</span>
           <h4>${a.title}</h4>
@@ -117,7 +117,7 @@
     const w = v==='feature'?1280:800, h = v==='feature'?720:500;
     return `<a class="news-card ${v==='feature'?'feature':''}" href="article.html?slug=${a.slug}">
       <div class="cover">
-        <img class="cover-img" src="${imgFor('news-'+a.slug, w, h)}" alt="${a.title}" loading="lazy"/>
+        <img class="cover-img" src="${newsImg(a, w, h)}" alt="${a.title}" loading="lazy"/>
         <div class="cover-grad" style="background:linear-gradient(135deg,var(--violet),var(--neon));mix-blend-mode:overlay;opacity:.45"></div>
         <div class="cover-fade"></div>
         <div class="body">
