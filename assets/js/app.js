@@ -63,12 +63,17 @@
   }
 
   // ---------- cards ----------
+  function imgFor(seed, w, h){
+    return `https://picsum.photos/seed/${encodeURIComponent(seed)}/${w}/${h}`;
+  }
+
   function gameCardHTML(g){
     const price = g.price === "Free" ? "FREE" : `$${g.price.toFixed(2)}`;
     const fav = window.NexusFavs.has(g.slug);
     return `<a class="game-card" href="game.html?slug=${g.slug}">
       <div class="cover">
-        <div class="cover-grad" style="background:${g.gradient}"></div>
+        <img class="cover-img" src="${imgFor('nexus-'+g.slug, 480, 640)}" alt="${g.title}" loading="lazy"/>
+        <div class="cover-grad" style="background:${g.gradient};mix-blend-mode:overlay;opacity:.55"></div>
         <div class="cover-grid grid-bg"></div>
         <div class="cover-fade"></div>
         <div class="top-bar">
@@ -89,7 +94,7 @@
     const v = variant || "default";
     if (v === "compact") {
       return `<a class="news-compact" href="article.html?slug=${a.slug}">
-        <div class="thumb" style="background:linear-gradient(135deg,var(--violet),var(--neon))"></div>
+        <img class="thumb" src="${imgFor('news-'+a.slug, 160, 160)}" alt="${a.title}"/>
         <div style="min-width:0">
           <span class="badge ${a.tag||'neon'}">${a.category}</span>
           <h4>${a.title}</h4>
@@ -97,9 +102,11 @@
         </div>
       </a>`;
     }
+    const w = v==='feature'?1280:800, h = v==='feature'?720:500;
     return `<a class="news-card ${v==='feature'?'feature':''}" href="article.html?slug=${a.slug}">
       <div class="cover">
-        <div class="cover-grad grid-bg" style="background:linear-gradient(135deg,var(--violet),var(--neon))"></div>
+        <img class="cover-img" src="${imgFor('news-'+a.slug, w, h)}" alt="${a.title}" loading="lazy"/>
+        <div class="cover-grad" style="background:linear-gradient(135deg,var(--violet),var(--neon));mix-blend-mode:overlay;opacity:.45"></div>
         <div class="cover-fade"></div>
         <div class="body">
           <span class="badge ${a.tag||'neon'}">${a.category}</span>
