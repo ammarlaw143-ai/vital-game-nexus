@@ -66,6 +66,18 @@
   function imgFor(seed, w, h){
     return `https://picsum.photos/seed/${encodeURIComponent(seed)}/${w}/${h}`;
   }
+  function gameImg(g, w, h){
+    if (g && g.image) return g.image;
+    const q = encodeURIComponent((g && g.title ? g.title : 'video game') + ' video game');
+    // loremflickr returns a Flickr photo tagged with the query — much more relevant than random
+    return `https://loremflickr.com/${w}/${h}/${q}?lock=${Math.abs(hashStr(g.slug||g.title||'x'))%10000}`;
+  }
+  function newsImg(a, w, h){
+    if (a && a.image) return a.image;
+    const q = encodeURIComponent((a && a.title ? a.title : 'gaming news') + ' gaming');
+    return `https://loremflickr.com/${w}/${h}/${q}?lock=${Math.abs(hashStr(a.slug||a.title||'x'))%10000}`;
+  }
+  function hashStr(s){ let h=0; for(let i=0;i<s.length;i++){ h=((h<<5)-h)+s.charCodeAt(i); h|=0;} return h; }
 
   function gameCardHTML(g){
     const price = g.price === "Free" ? "FREE" : `$${g.price.toFixed(2)}`;
