@@ -66,13 +66,25 @@
   function imgFor(seed, w, h){
     return `https://picsum.photos/seed/${encodeURIComponent(seed)}/${w}/${h}`;
   }
+  function gameImg(g, w, h){
+    if (g && g.image) return g.image;
+    const q = encodeURIComponent((g && g.title ? g.title : 'video game') + ' video game');
+    // loremflickr returns a Flickr photo tagged with the query — much more relevant than random
+    return `https://loremflickr.com/${w}/${h}/${q}?lock=${Math.abs(hashStr(g.slug||g.title||'x'))%10000}`;
+  }
+  function newsImg(a, w, h){
+    if (a && a.image) return a.image;
+    const q = encodeURIComponent((a && a.title ? a.title : 'gaming news') + ' gaming');
+    return `https://loremflickr.com/${w}/${h}/${q}?lock=${Math.abs(hashStr(a.slug||a.title||'x'))%10000}`;
+  }
+  function hashStr(s){ let h=0; for(let i=0;i<s.length;i++){ h=((h<<5)-h)+s.charCodeAt(i); h|=0;} return h; }
 
   function gameCardHTML(g){
     const price = g.price === "Free" ? "FREE" : `$${g.price.toFixed(2)}`;
     const fav = window.NexusFavs.has(g.slug);
     return `<a class="game-card" href="game.html?slug=${g.slug}">
       <div class="cover">
-        <img class="cover-img" src="${imgFor('nexus-'+g.slug, 480, 640)}" alt="${g.title}" loading="lazy"/>
+        <img class="cover-img" src="${gameImg(g, 480, 640)}" alt="${g.title}" loading="lazy"/>
         <div class="cover-grad" style="background:${g.gradient};mix-blend-mode:overlay;opacity:.55"></div>
         <div class="cover-grid grid-bg"></div>
         <div class="cover-fade"></div>
@@ -94,7 +106,7 @@
     const v = variant || "default";
     if (v === "compact") {
       return `<a class="news-compact" href="article.html?slug=${a.slug}">
-        <img class="thumb" src="${imgFor('news-'+a.slug, 160, 160)}" alt="${a.title}"/>
+        <img class="thumb" src="${newsImg(a, 160, 160)}" alt="${a.title}"/>
         <div style="min-width:0">
           <span class="badge ${a.tag||'neon'}">${a.category}</span>
           <h4>${a.title}</h4>
@@ -105,7 +117,7 @@
     const w = v==='feature'?1280:800, h = v==='feature'?720:500;
     return `<a class="news-card ${v==='feature'?'feature':''}" href="article.html?slug=${a.slug}">
       <div class="cover">
-        <img class="cover-img" src="${imgFor('news-'+a.slug, w, h)}" alt="${a.title}" loading="lazy"/>
+        <img class="cover-img" src="${newsImg(a, w, h)}" alt="${a.title}" loading="lazy"/>
         <div class="cover-grad" style="background:linear-gradient(135deg,var(--violet),var(--neon));mix-blend-mode:overlay;opacity:.45"></div>
         <div class="cover-fade"></div>
         <div class="body">
