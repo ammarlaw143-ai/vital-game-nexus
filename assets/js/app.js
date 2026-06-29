@@ -186,7 +186,7 @@
     const v = variant || "default";
     if (v === "compact") {
       return `<a class="news-compact" href="article.html?slug=${a.slug}">
-        <img class="thumb" src="${newsImg(a, 160, 160)}" alt="${a.title}"/>
+        <img class="thumb" src="${newsImg(a, 160, 160)}" alt="${a.title}" data-title="${a.title}" data-slug="${a.slug}" data-w="160" data-h="160" onerror="NexusImgFallback(this)"/>
         <div style="min-width:0">
           <span class="badge ${a.tag||'neon'}">${a.category}</span>
           <h4>${a.title}</h4>
@@ -197,7 +197,7 @@
     const w = v==='feature'?1280:800, h = v==='feature'?720:500;
     return `<a class="news-card ${v==='feature'?'feature':''}" href="article.html?slug=${a.slug}">
       <div class="cover">
-        <img class="cover-img" src="${newsImg(a, w, h)}" alt="${a.title}" loading="lazy"/>
+        <img class="cover-img" src="${newsImg(a, w, h)}" alt="${a.title}" loading="lazy" data-title="${a.title}" data-slug="${a.slug}" data-w="${w}" data-h="${h}" onerror="NexusImgFallback(this)"/>
         <div class="cover-grad" style="background:linear-gradient(135deg,var(--violet),var(--neon));mix-blend-mode:overlay;opacity:.45"></div>
         <div class="cover-fade"></div>
         <div class="body">
