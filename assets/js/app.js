@@ -106,16 +106,21 @@
     "final-fantasy-xvi": "https://upload.wikimedia.org/wikipedia/en/0/0b/Final_Fantasy_XVI_cover_art.jpg",
     "final-fantasy-vii-rebirth": "https://upload.wikimedia.org/wikipedia/en/6/68/Final_Fantasy_VII_Rebirth_cover_art.jpg"
   };
+  // Bing image thumbnail API serves topic-relevant hot-linkable images.
+  function bingImg(query, w, h){
+    return `https://tse1.mm.bing.net/th?q=${encodeURIComponent(query)}&w=${w}&h=${h}&c=7&rs=1&p=0&pid=Api`;
+  }
   function gameImg(g, w, h){
     if (g && g.image) return g.image;
     if (g && COVERS[g.slug]) return COVERS[g.slug];
-    return `https://picsum.photos/seed/${encodeURIComponent(g.slug||g.title||'x')}/${w}/${h}`;
+    return bingImg(`${g.title} video game cover art`, w, h);
   }
   function newsImg(a, w, h){
     if (a && a.image) return a.image;
-    return `https://picsum.photos/seed/${encodeURIComponent(a.slug||a.title||'x')}/${w}/${h}`;
+    // Use the article title (or first tag/category) as the visual subject
+    const subject = a.category ? `${a.title} ${a.category} gaming` : `${a.title} gaming news`;
+    return bingImg(subject, w, h);
   }
-  function hashStr(s){ let h=0; for(let i=0;i<s.length;i++){ h=((h<<5)-h)+s.charCodeAt(i); h|=0;} return h; }
 
   function gameCardHTML(g){
     const price = g.price === "Free" ? "FREE" : `$${g.price.toFixed(2)}`;
