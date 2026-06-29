@@ -106,30 +106,67 @@
     "final-fantasy-xvi": "https://upload.wikimedia.org/wikipedia/en/0/0b/Final_Fantasy_XVI_cover_art.jpg",
     "final-fantasy-vii-rebirth": "https://upload.wikimedia.org/wikipedia/en/6/68/Final_Fantasy_VII_Rebirth_cover_art.jpg"
   };
-  // Bing image thumbnail API serves topic-relevant hot-linkable images.
+  // Image source helpers with multi-step fallback chain.
+  function steamImg(appid){
+    return `https://cdn.cloudflare.steamstatic.com/steam/apps/${appid}/library_600x900.jpg`;
+  }
   function bingImg(query, w, h){
     return `https://tse1.mm.bing.net/th?q=${encodeURIComponent(query)}&w=${w}&h=${h}&c=7&rs=1&p=0&pid=Api`;
   }
+  function ddgImg(query){
+    return `https://external-content.duckduckgo.com/iu/?u=${encodeURIComponent('https://www.bing.com/th?q='+query)}`;
+  }
+  function placeholderImg(text, w, h){
+    return `https://placehold.co/${w}x${h}/0a0a14/00f0ff?text=${encodeURIComponent(text)}`;
+  }
   function gameImg(g, w, h){
-    if (g && g.image) return g.image;
-    if (g && COVERS[g.slug]) return COVERS[g.slug];
+    if (!g) return placeholderImg("Game", w, h);
+    if (g.image) return g.image;
+    if (g.appid) return steamImg(g.appid);
+    if (COVERS[g.slug]) return COVERS[g.slug];
     return bingImg(`${g.title} video game cover art`, w, h);
   }
   function newsImg(a, w, h){
     if (a && a.image) return a.image;
-    // Use the article title (or first tag/category) as the visual subject
-    const subject = a.category ? `${a.title} ${a.category} gaming` : `${a.title} gaming news`;
+    const subject = a && a.category ? `${a.title} ${a.category} gaming` : `${a && a.title || 'gaming'} news`;
     return bingImg(subject, w, h);
   }
 
+  // Multi-step image fallback. Each <img> carries data-fallback-step.
+  window.NexusImgFallback = function(el){
+    const step = parseInt(el.dataset.fallbackStep || "0", 10) + 1;
+    el.dataset.fallbackStep = String(step);
+    const title = el.dataset.title || "";
+    const slug = el.dataset.slug || "";
+    const w = parseInt(el.dataset.w || "480", 10);
+    const h = parseInt(el.dataset.h || "640", 10);
+    if (step === 1 && COVERS[slug]) { el.src = COVERS[slug]; return; }
+    if (step <= 2) { el.src = bingImg(`${title} video game cover`, w, h); return; }
+    if (step === 3) { el.src = ddgImg(`${title} game`); return; }
+    el.onerror = null;
+    el.src = placeholderImg(title.slice(0,16), w, h);
+  };
+
+  function imgTag(src, alt, slug, title, w, h){
+    return `<img class="cover-img" src="${src}" alt="${alt}" loading="lazy"
+      data-slug="${slug}" data-title="${(title||'').replace(/"/g,'&quot;')}" data-w="${w}" data-h="${h}"
+      onerror="NexusImgFallback(this)"/>`;
+  }
+
+  function priceLabel(g){
+    if (g.price === "Free") return "FREE";
+    if (g.upcoming || g.price === 0 || g.price == null) return "TBA";
+    return `$${Number(g.price).toFixed(2)}`;
+  }
+
   function gameCardHTML(g){
-    const price = g.price === "Free" ? "FREE" : `$${g.price.toFixed(2)}`;
+    const price = priceLabel(g);
     const fav = window.NexusFavs.has(g.slug);
     return `<a class="game-card" href="game.html?slug=${g.slug}">
       <div class="cover">
-        <img class="cover-img" src="${gameImg(g, 480, 640)}" alt="${g.title}" loading="lazy"/>
-        <div class="cover-grad" style="background:${g.gradient};mix-blend-mode:overlay;opacity:.55"></div>
-        <div class="cover-grid grid-bg"></div>
+        ${imgTag(gameImg(g, 480, 640), g.title, g.slug, g.title, 480, 640)}
+        <div class="cover-grad" style="background:${g.gradient};mix-blend-mode:overlay;opacity:.28"></div>
+        <div class="cover-grid grid-bg" style="opacity:.25"></div>
         <div class="cover-fade"></div>
         <div class="top-bar">
           <span class="price-badge ${g.price==='Free'?'free':''}">${price}</span>
@@ -149,7 +186,7 @@
     const v = variant || "default";
     if (v === "compact") {
       return `<a class="news-compact" href="article.html?slug=${a.slug}">
-        <img class="thumb" src="${newsImg(a, 160, 160)}" alt="${a.title}"/>
+        <img class="thumb" src="${newsImg(a, 160, 160)}" alt="${a.title}" data-title="${a.title}" data-slug="${a.slug}" data-w="160" data-h="160" onerror="NexusImgFallback(this)"/>
         <div style="min-width:0">
           <span class="badge ${a.tag||'neon'}">${a.category}</span>
           <h4>${a.title}</h4>
@@ -160,7 +197,7 @@
     const w = v==='feature'?1280:800, h = v==='feature'?720:500;
     return `<a class="news-card ${v==='feature'?'feature':''}" href="article.html?slug=${a.slug}">
       <div class="cover">
-        <img class="cover-img" src="${newsImg(a, w, h)}" alt="${a.title}" loading="lazy"/>
+        <img class="cover-img" src="${newsImg(a, w, h)}" alt="${a.title}" loading="lazy" data-title="${a.title}" data-slug="${a.slug}" data-w="${w}" data-h="${h}" onerror="NexusImgFallback(this)"/>
         <div class="cover-grad" style="background:linear-gradient(135deg,var(--violet),var(--neon));mix-blend-mode:overlay;opacity:.45"></div>
         <div class="cover-fade"></div>
         <div class="body">
