@@ -2,8 +2,8 @@
   "name": "nexus-gaming-static",
   "private": true,
   "scripts": {
-    "build": "echo 'Static site — nothing to build.'",
-    "build:dev": "echo 'Static site — nothing to build.'",
+    "build": "rm -rf dist && mkdir -p dist && cp -r *.html robots.txt assets dist/",
+    "build:dev": "rm -rf dist && mkdir -p dist && cp -r *.html robots.txt assets dist/",
     "dev": "./serve.sh"
   }
 }

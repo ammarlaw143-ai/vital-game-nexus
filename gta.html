@@ -4,39 +4,192 @@
 <meta charset="utf-8"/>
 <meta name="viewport" content="width=device-width,initial-scale=1"/>
 <title>GTA Hub — Nexus Gaming</title>
-<meta name="description" content="GTA V, GTA Online and the road to GTA VI — guides, leaks and the latest news."/>
+<meta name="description" content="Dedicated GTA V and GTA VI hubs — guides, cheats, money methods, Vice City leaks and trailer breakdowns."/>
 <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet"/>
 <link rel="stylesheet" href="assets/css/styles.css"/>
+<style>
+  .gta-switch{display:flex;gap:.75rem;flex-wrap:wrap;margin:2rem 0}
+  .gta-switch a{padding:.85rem 1.5rem;border-radius:.5rem;border:1px solid rgba(255,255,255,.15);text-decoration:none;font-weight:700;letter-spacing:.05em;text-transform:uppercase;font-family:'Rajdhani',sans-serif;font-size:1rem;color:#fff;background:rgba(255,255,255,.04);transition:all .2s}
+  .gta-switch a:hover{transform:translateY(-2px)}
+  .gta-switch a.v{border-color:#22c55e;color:#22c55e;text-shadow:0 0 12px rgba(34,197,94,.6)}
+  .gta-switch a.vi{border-color:#ec4899;color:#ec4899;text-shadow:0 0 12px rgba(236,72,153,.6)}
+  .gta-section{padding:5rem 0;position:relative;overflow:hidden}
+  .gta-section .bg{position:absolute;inset:0;opacity:.18;background-size:cover;background-position:center;filter:blur(2px)}
+  .gta-section .bg::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(10,14,26,.6),rgba(10,14,26,.95))}
+  .gta-hero-grid{display:grid;grid-template-columns:1fr 1fr;gap:3rem;align-items:center;position:relative}
+  .gta-hero-grid img.cover{width:100%;border-radius:1rem;box-shadow:0 30px 80px rgba(0,0,0,.6);border:1px solid rgba(255,255,255,.1)}
+  .gta-hero-grid h2{font-size:clamp(2.5rem,5vw,4.5rem);margin:0 0 1rem;font-family:'Rajdhani',sans-serif;font-weight:700;text-transform:uppercase;line-height:.95}
+  .gta-meta{display:flex;gap:1.5rem;flex-wrap:wrap;margin:1rem 0 1.5rem;color:rgba(255,255,255,.6);font-size:.875rem}
+  .gta-meta span b{color:#fff;display:block;font-size:1.125rem;font-family:'Rajdhani',sans-serif}
+  .feat-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:1rem;margin-top:2.5rem}
+  .feat-grid .glass{padding:1.5rem;border-radius:.75rem}
+  .feat-grid h4{margin:0 0 .5rem;font-family:'Rajdhani',sans-serif;text-transform:uppercase;letter-spacing:.05em;font-size:1rem}
+  .feat-grid p{margin:0;color:rgba(255,255,255,.65);font-size:.875rem;line-height:1.6}
+  .cheat-table{width:100%;border-collapse:collapse;margin-top:1.5rem;font-size:.875rem}
+  .cheat-table th,.cheat-table td{padding:.75rem 1rem;text-align:left;border-bottom:1px solid rgba(255,255,255,.08)}
+  .cheat-table th{color:#22c55e;font-family:'Rajdhani',sans-serif;text-transform:uppercase;letter-spacing:.05em;font-size:.75rem}
+  .cheat-table code{background:rgba(34,197,94,.1);padding:.15rem .5rem;border-radius:.25rem;color:#22c55e;font-size:.8rem}
+  @media(max-width:768px){.gta-hero-grid{grid-template-columns:1fr;gap:1.5rem}.gta-hero-grid img.cover{max-width:320px;margin:0 auto;display:block}}
+</style>
 </head>
 <body>
 <div id="header"></div>
-<section class="hero" style="min-height:60vh">
-  <div class="hero-bg" style="background-image:url('assets/img/hub-gta.jpg')"></div>
+
+<section class="hero" style="min-height:55vh">
+  <div class="hero-bg" style="background-image:url('https://upload.wikimedia.org/wikipedia/en/a/a5/Grand_Theft_Auto_V.png');background-size:cover;background-position:center;filter:blur(6px) brightness(.4)"></div>
   <div class="hero-overlay"></div>
   <div class="container hero-content">
-    <p class="eyebrow" style="color:var(--gta)"><span class="pulse" style="background:var(--gta);box-shadow:0 0 12px var(--gta)"></span>GTA Hub</p>
-    <h1>Los Santos to<br/><span class="accent" style="color:var(--gta);text-shadow:0 0 30px var(--gta)">Vice City.</span></h1>
-    <p class="lead">Guides, cheats, money methods, and full coverage of the road to GTA VI.</p>
-    <div style="display:flex;gap:.75rem;margin-top:2rem;flex-wrap:wrap">
-      <a href="game.html?slug=gta-v" class="btn btn-primary" style="background:var(--gta);color:#0a0e1a">GTA V</a>
-      <a href="game.html?slug=gta-vi" class="btn btn-outline">GTA VI</a>
+    <p class="eyebrow" style="color:#ec4899"><span class="pulse" style="background:#ec4899;box-shadow:0 0 12px #ec4899"></span>Rockstar Universe</p>
+    <h1>Los Santos to<br/><span class="accent" style="color:#ec4899;text-shadow:0 0 30px #ec4899">Vice City.</span></h1>
+    <p class="lead">Two cities. Two eras. Pick your hub — full guides, cheats, money methods, trailer breakdowns and everything we know about the road to GTA VI.</p>
+    <div class="gta-switch">
+      <a href="#gta-v" class="v">▸ Enter GTA V Hub</a>
+      <a href="#gta-vi" class="vi">▸ Enter GTA VI Hub</a>
     </div>
   </div>
 </section>
 
-<section class="container" style="padding:4rem 1rem">
-  <div class="section-head"><h2>What's Inside</h2></div>
-  <div class="grid grid-3" id="topics"></div>
+<!-- =================== GTA V SECTION =================== -->
+<section id="gta-v" class="gta-section">
+  <div class="bg" style="background-image:url('https://upload.wikimedia.org/wikipedia/en/a/a5/Grand_Theft_Auto_V.png')"></div>
+  <div class="container" style="position:relative">
+    <div class="gta-hero-grid">
+      <img class="cover" src="https://upload.wikimedia.org/wikipedia/en/a/a5/Grand_Theft_Auto_V.png" alt="GTA V cover art"/>
+      <div>
+        <p class="eyebrow" style="color:#22c55e"><span class="pulse" style="background:#22c55e;box-shadow:0 0 12px #22c55e"></span>GTA V Hub · Live since 2013</p>
+        <h2 style="color:#22c55e;text-shadow:0 0 30px rgba(34,197,94,.4)">Grand Theft<br/>Auto V</h2>
+        <p style="color:rgba(255,255,255,.75);font-size:1.0625rem;line-height:1.7">Rockstar's record-shattering open-world crime epic. Switch between Michael, Franklin and Trevor across a fully simulated Los Santos — pull off massive heists, build a criminal empire in GTA Online, and explore one of the most detailed sandboxes ever made.</p>
+        <div class="gta-meta">
+          <span><b>2013</b>Release</span>
+          <span><b>9.5 / 10</b>Rating</span>
+          <span><b>200M+</b>Copies Sold</span>
+          <span><b>PC · PS5 · Xbox</b>Platforms</span>
+        </div>
+        <div style="display:flex;gap:.75rem;flex-wrap:wrap">
+          <a href="game.html?slug=grand-theft-auto-v" class="btn btn-primary" style="background:#22c55e;color:#0a0e1a">Full Game Page →</a>
+          <a href="https://www.rockstargames.com/gta-v" target="_blank" rel="noopener" class="btn btn-outline">Rockstar Official</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="section-head" style="margin-top:4rem"><h2 style="color:#22c55e">What's Inside GTA V</h2></div>
+    <div class="feat-grid">
+      <div class="glass"><h4 style="color:#22c55e">🎯 Story Walkthroughs</h4><p>Full mission-by-mission guides for all 69 story missions, including gold-medal objectives and 100% completion checklist.</p></div>
+      <div class="glass"><h4 style="color:#22c55e">💰 GTA Online Money</h4><p>Best legit money methods — Cayo Perico Heist solo, Cluckin' Bell Farm Raid, weekly bonus tracker, and Acid Lab passive income.</p></div>
+      <div class="glass"><h4 style="color:#22c55e">🚗 Vehicle Database</h4><p>Top S-class cars, fastest planes, best armored vehicles. Stats, prices, customization tiers and Arena War variants.</p></div>
+      <div class="glass"><h4 style="color:#22c55e">🔫 Heist Guides</h4><p>Fleeca, Pacific Standard, Doomsday, Diamond Casino, Cayo Perico, Bogdan Problem — full setup-by-setup walkthroughs.</p></div>
+      <div class="glass"><h4 style="color:#22c55e">🗺️ Collectibles</h4><p>All 50 spaceship parts, 50 letter scraps, 30 nuclear waste barrels, 27 submarine parts, peyote plants and stunt jumps.</p></div>
+      <div class="glass"><h4 style="color:#22c55e">🛠️ Single-Player Mods</h4><p>Safe story-mode-only mods — Script Hook V, OpenIV, NaturalVision Evolved. Step-by-step install. Never use in GTA Online.</p></div>
+    </div>
+
+    <div class="section-head" style="margin-top:4rem"><h2 style="color:#22c55e">Essential GTA V Cheats</h2></div>
+    <div class="glass" style="padding:1.5rem;border-radius:.75rem;overflow-x:auto">
+      <table class="cheat-table">
+        <thead><tr><th>Effect</th><th>PC Console</th><th>PlayStation</th><th>Xbox</th></tr></thead>
+        <tbody>
+          <tr><td>Invincibility (5 min)</td><td><code>PAINKILLER</code></td><td>R1, ◯, R2, →, R1, L1, X, →, ◯, R1, L1, L1, L1</td><td>RB, B, RT, RB, LB, A, →, B, RB, LB, LB, LB</td></tr>
+          <tr><td>Max Health & Armor</td><td><code>TURTLE</code></td><td>◯, L1, △, R2, X, □, ◯, →, □, L1, L1, L1</td><td>B, LB, Y, RT, A, X, B, →, X, LB, LB, LB</td></tr>
+          <tr><td>Give Weapons</td><td><code>TOOLUP</code></td><td>△, R2, ←, L1, X, →, △, ↓, □, L1, L1, L1</td><td>Y, RT, ←, LB, A, →, Y, ↓, X, LB, LB, LB</td></tr>
+          <tr><td>Lower Wanted Level</td><td><code>LAWYERUP</code></td><td>R1, R1, ◯, R2, ←, →, ←, →, ←, →</td><td>RB, RB, B, RT, ←, →, ←, →, ←, →</td></tr>
+          <tr><td>Spawn Buzzard Heli</td><td><code>BUZZOFF</code></td><td>◯, ◯, L1, ◯, ◯, ◯, L1, L2, R1, △, ◯, △</td><td>B, B, LB, B, B, B, LB, LT, RB, Y, B, Y</td></tr>
+          <tr><td>Spawn Sports Car (Comet)</td><td><code>COMETME</code></td><td>R1, ◯, R2, →, L1, L2, X, X, □, R1</td><td>RB, B, RT, →, LB, LT, A, A, X, RB</td></tr>
+          <tr><td>Slow Motion</td><td><code>SLOWMO</code></td><td>△, ←, →, →, □, R2, R1</td><td>Y, ←, →, →, X, RT, RB</td></tr>
+          <tr><td>Drunk Mode</td><td><code>LIQUOR</code></td><td>△, →, →, ←, →, □, ◯, ←</td><td>Y, →, →, ←, →, X, B, ←</td></tr>
+          <tr><td>Skyfall</td><td><code>SKYFALL</code></td><td>L1, L2, R1, R2, ←, →, ←, →, L1, L2, R1, R2</td><td>LB, LT, RB, RT, ←, →, ←, →, LB, LT, RB, RT</td></tr>
+          <tr><td>Explosive Bullets</td><td><code>HIGHEX</code></td><td>→, □, X, ←, R1, R2, ←, →, →, L1, L1, L1</td><td>→, X, A, ←, RB, RT, ←, →, →, LB, LB, LB</td></tr>
+        </tbody>
+      </table>
+      <p style="color:rgba(255,255,255,.5);font-size:.8rem;margin:1rem 0 0">Cheats disable Achievements/Trophies in the current session. Single-player only — never work in GTA Online.</p>
+    </div>
+
+    <div class="section-head" style="margin-top:4rem"><h2 style="color:#22c55e">Best GTA Online Money Methods (2025)</h2></div>
+    <div class="feat-grid">
+      <div class="glass"><h4 style="color:#22c55e">1. Cayo Perico Heist (Solo)</h4><p>~$1.5M / 90 min · Best solo heist. Scout Madrazo's Files, take Panther Statue ($1.9M) when active.</p></div>
+      <div class="glass"><h4 style="color:#22c55e">2. Cluckin' Bell Farm Raid</h4><p>~$800K / 50 min · Newer 2024 heist. Less repetitive, scales well in 2-4 player teams.</p></div>
+      <div class="glass"><h4 style="color:#22c55e">3. Acid Lab (Passive)</h4><p>Set up MC business, run Fooligan job. Yields ~$335K per full bar of supplies. AFK-friendly.</p></div>
+      <div class="glass"><h4 style="color:#22c55e">4. Auto Shop Contracts</h4><p>~$200-300K / 45 min · Union Depository Contract pays best. Great solo or with one friend.</p></div>
+      <div class="glass"><h4 style="color:#22c55e">5. Diamond Casino Heist</h4><p>~$1.3M (Diamonds) / 2 hours · Big Con approach with Gruppe Sechs is fastest stealth route.</p></div>
+      <div class="glass"><h4 style="color:#22c55e">6. Weekly Bonuses</h4><p>Always check the Tuesday update — 2x/3x money events rotate weekly. Stack with your main grind.</p></div>
+    </div>
+  </div>
 </section>
 
-<section class="container" style="padding:2rem 1rem 4rem">
-  <div class="section-head"><h2>GTA Games</h2><a href="games.html">All games →</a></div>
+<!-- =================== GTA VI SECTION =================== -->
+<section id="gta-vi" class="gta-section" style="background:linear-gradient(180deg,rgba(236,72,153,.04),rgba(10,14,26,1))">
+  <div class="bg" style="background-image:url('https://upload.wikimedia.org/wikipedia/en/a/a0/Grand_Theft_Auto_VI.png')"></div>
+  <div class="container" style="position:relative">
+    <div class="gta-hero-grid" style="grid-template-columns:1fr 1fr">
+      <div>
+        <p class="eyebrow" style="color:#ec4899"><span class="pulse" style="background:#ec4899;box-shadow:0 0 12px #ec4899"></span>GTA VI Hub · Coming 2026</p>
+        <h2 style="color:#ec4899;text-shadow:0 0 30px rgba(236,72,153,.4)">Grand Theft<br/>Auto VI</h2>
+        <p style="color:rgba(255,255,255,.75);font-size:1.0625rem;line-height:1.7">Return to Vice City. Rockstar's next generational leap features the franchise's first female protagonist Lucia, her partner Jason, and a fully reimagined state of Leonida. Trailers reveal a denser open world, dynamic NPCs and never-before-seen interior detail.</p>
+        <div class="gta-meta">
+          <span><b>2026</b>Release Window</span>
+          <span><b>Lucia & Jason</b>Protagonists</span>
+          <span><b>Vice City</b>Setting</span>
+          <span><b>PS5 · Xbox</b>Launch Platforms</span>
+        </div>
+        <div style="display:flex;gap:.75rem;flex-wrap:wrap">
+          <a href="game.html?slug=grand-theft-auto-vi" class="btn btn-primary" style="background:#ec4899;color:#0a0e1a">Full Game Page →</a>
+          <a href="https://www.rockstargames.com/VI" target="_blank" rel="noopener" class="btn btn-outline">Official Trailer</a>
+        </div>
+      </div>
+      <img class="cover" src="https://upload.wikimedia.org/wikipedia/en/a/a0/Grand_Theft_Auto_VI.png" alt="GTA VI cover art"/>
+    </div>
+
+    <div class="section-head" style="margin-top:4rem"><h2 style="color:#ec4899">What We Know About GTA VI</h2></div>
+    <div class="feat-grid">
+      <div class="glass"><h4 style="color:#ec4899">🌴 Setting: Leonida</h4><p>A fictionalized Florida — Vice City, the Everglades-inspired Leonida Keys, Port Gellhorn and dense neon coastal nightlife.</p></div>
+      <div class="glass"><h4 style="color:#ec4899">👥 Dual Protagonists</h4><p>Lucia (franchise first female lead) and Jason — a Bonnie-and-Clyde dynamic confirmed in Trailer 1 with on-the-run heist energy.</p></div>
+      <div class="glass"><h4 style="color:#ec4899">🎬 Trailer 1 Breakdown</h4><p>Dropped Dec 2023 — 91M views in 24h. Showcases crowd density, social media feeds, hyperrealistic faces and dynamic weather.</p></div>
+      <div class="glass"><h4 style="color:#ec4899">🚗 Vehicle Rumors</h4><p>Datamines suggest 700+ vehicles at launch, expanded plane roster, and reintroduction of bicycles and jet skis from Vice City Stories.</p></div>
+      <div class="glass"><h4 style="color:#ec4899">📱 Living World</h4><p>Confirmed: in-world social media (Bleeter successor "Vinewood Stories"), live NPC interactions, and dynamic crime witnessing.</p></div>
+      <div class="glass"><h4 style="color:#ec4899">🎮 Engine: RAGE 9</h4><p>Next-gen RAGE engine — wet/dry skin shaders, real-time interior lighting, full underwater swim mechanics returning from San Andreas.</p></div>
+      <div class="glass"><h4 style="color:#ec4899">💵 Economy 2.0</h4><p>Rumored physical currency carry mechanic, robbable ATMs, gas stations, and procedural store interiors across the entire map.</p></div>
+      <div class="glass"><h4 style="color:#ec4899">🏖️ Map Size</h4><p>Leaks suggest ~2x GTA V's land area, with full enterable buildings and the largest Rockstar interior count ever shipped.</p></div>
+      <div class="glass"><h4 style="color:#ec4899">🌐 Online Future</h4><p>GTA Online VI confirmed but launching post-release. Rockstar exploring cross-progression from GTA V Online (TBC).</p></div>
+    </div>
+
+    <div class="section-head" style="margin-top:4rem"><h2 style="color:#ec4899">GTA VI Release Timeline</h2></div>
+    <div class="glass" style="padding:2rem;border-radius:.75rem">
+      <div style="display:grid;gap:1.25rem">
+        <div style="display:grid;grid-template-columns:140px 1fr;gap:1rem;align-items:start;border-left:2px solid #ec4899;padding-left:1rem">
+          <b style="color:#ec4899;font-family:'Rajdhani',sans-serif;font-size:1.125rem">Dec 2023</b>
+          <p style="margin:0;color:rgba(255,255,255,.75)">Trailer 1 released a day early after leaks. Confirms Vice City setting, Lucia, and a 2025 window.</p>
+        </div>
+        <div style="display:grid;grid-template-columns:140px 1fr;gap:1rem;align-items:start;border-left:2px solid #ec4899;padding-left:1rem">
+          <b style="color:#ec4899;font-family:'Rajdhani',sans-serif;font-size:1.125rem">May 2024</b>
+          <p style="margin:0;color:rgba(255,255,255,.75)">Take-Two confirms "Fall 2025" launch window in earnings call. Stock rises 5%.</p>
+        </div>
+        <div style="display:grid;grid-template-columns:140px 1fr;gap:1rem;align-items:start;border-left:2px solid #ec4899;padding-left:1rem">
+          <b style="color:#ec4899;font-family:'Rajdhani',sans-serif;font-size:1.125rem">May 2025</b>
+          <p style="margin:0;color:rgba(255,255,255,.75)">Rockstar officially delays to <b>May 26, 2026</b> "to deliver the level of polish you expect." Trailer 2 announced.</p>
+        </div>
+        <div style="display:grid;grid-template-columns:140px 1fr;gap:1rem;align-items:start;border-left:2px solid #ec4899;padding-left:1rem">
+          <b style="color:#ec4899;font-family:'Rajdhani',sans-serif;font-size:1.125rem">2026</b>
+          <p style="margin:0;color:rgba(255,255,255,.75)">Expected launch on PS5 & Xbox Series X|S. PC version typically follows 6-12 months after console (TBA).</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="section-head" style="margin-top:4rem"><h2 style="color:#ec4899">Most Asked Questions</h2></div>
+    <div class="feat-grid">
+      <div class="glass"><h4 style="color:#ec4899">Will GTA VI come to PC?</h4><p>Almost certainly — but not at launch. RDR2 and GTA V both followed the same pattern (~12 months later).</p></div>
+      <div class="glass"><h4 style="color:#ec4899">Pre-order open?</h4><p>Not yet. Rockstar never opens pre-orders before a final release date is confirmed. Avoid "pre-order" scam sites.</p></div>
+      <div class="glass"><h4 style="color:#ec4899">Will it have crossplay?</h4><p>Unconfirmed for story mode (single-player). GTA Online VI is heavily rumored to support crossplay across PS5 and Xbox.</p></div>
+      <div class="glass"><h4 style="color:#ec4899">Price?</h4><p>Expected $69.99-$79.99 standard. Special editions likely $99.99+. Take-Two has hinted at "premium pricing".</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="container" style="padding:3rem 1rem 4rem">
+  <div class="section-head"><h2>All Rockstar Games</h2><a href="games.html">All games →</a></div>
   <div class="grid-5" id="gtaGames"></div>
 </section>
 
 <section class="container" style="padding:0 1rem 4rem">
-  <div class="glass" style="padding:1.5rem;border-radius:.75rem;border-left:3px solid var(--gta)">
-    <p style="color:rgba(255,255,255,.7);font-size:.875rem;margin:0">Heads up: We only link to official Rockstar Games sources and licensed retailers. We don't host or endorse modded online lobbies.</p>
+  <div class="glass" style="padding:1.5rem;border-radius:.75rem;border-left:3px solid #ec4899">
+    <p style="color:rgba(255,255,255,.7);font-size:.875rem;margin:0">Heads up: We only link to official Rockstar Games sources and licensed retailers. We don't host or endorse modded online lobbies. Leak coverage is sourced from credible reporting only.</p>
   </div>
 </section>
 
@@ -44,16 +197,25 @@
 <script src="assets/js/data.js"></script>
 <script src="assets/js/app.js"></script>
 <script>
-Nexus.mountLayout("gta.html");
-document.getElementById("topics").innerHTML = [
-  ["GTA V Story Walkthroughs","Full mission guides, gold-medal tips, and 100% completion checklist."],
-  ["GTA Online Money Methods","Best legit grinds, heist payouts, and weekly bonuses tracker."],
-  ["Cheat Codes & Console Inputs","Every PC, PlayStation and Xbox cheat — by category."],
-  ["GTA VI Coverage","Every confirmed detail, trailer breakdown, and credible leak."],
-  ["Vehicle Database","Top cars, planes and boats for every play style."],
-  ["Mods & Trainers (Single-Player)","Safe, single-player-only mod tutorials linked to official sources."]
-].map(([t,d])=>`<div class="glass" style="padding:1.5rem;border-radius:.75rem"><h3 style="font-size:1.125rem;text-transform:uppercase;margin:0;color:var(--gta)">${t}</h3><p style="color:rgba(255,255,255,.6);margin:.5rem 0 0">${d}</p></div>`).join('');
-document.getElementById("gtaGames").innerHTML = Nexus.games.filter(g=>g.slug.startsWith("gta")).map(Nexus.gameCardHTML).join('');
+  Nexus.mountLayout("gta.html");
+  // Smooth scroll to anchors
+  document.querySelectorAll('.gta-switch a[href^="#"]').forEach(a => {
+    a.addEventListener('click', e => {
+      e.preventDefault();
+      const t = document.querySelector(a.getAttribute('href'));
+      if (t) t.scrollIntoView({behavior:'smooth', block:'start'});
+    });
+  });
+  // Pull all Rockstar games
+  const rockstar = Nexus.games.filter(g =>
+    (g.publisher && g.publisher.includes("Rockstar")) ||
+    g.slug.includes("grand-theft-auto") ||
+    g.slug.includes("red-dead") ||
+    g.slug.includes("bully") ||
+    g.slug.includes("max-payne")
+  );
+  document.getElementById("gtaGames").innerHTML = rockstar.map(Nexus.gameCardHTML).join('') ||
+    '<p style="color:rgba(255,255,255,.5);grid-column:1/-1;text-align:center;padding:2rem">No Rockstar titles found in the database.</p>';
 </script>
 </body>
 </html>
