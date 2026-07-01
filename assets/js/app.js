@@ -211,7 +211,7 @@
     const fav = window.NexusFavs.has(g.slug);
     return `<a class="game-card" href="game.html?slug=${g.slug}">
       <div class="cover">
-        ${imgTag(gameImg(g, 480, 640), g.title, g.slug, g.title, 480, 640)}
+        ${imgTag(gameImg(g, 480, 640), g.title, g.slug, g.title, 480, 640, g.appid)}
         <div class="cover-grad" style="background:${g.gradient};mix-blend-mode:overlay;opacity:.28"></div>
         <div class="cover-grid grid-bg" style="opacity:.25"></div>
         <div class="cover-fade"></div>
