@@ -194,9 +194,9 @@
     el.src = placeholderImg(title.slice(0,16), w, h);
   };
 
-  function imgTag(src, alt, slug, title, w, h){
+  function imgTag(src, alt, slug, title, w, h, appid){
     return `<img class="cover-img" src="${src}" alt="${alt}" loading="lazy"
-      data-slug="${slug}" data-title="${(title||'').replace(/"/g,'&quot;')}" data-w="${w}" data-h="${h}"
+      data-slug="${slug}" data-title="${(title||'').replace(/"/g,'&quot;')}" data-w="${w}" data-h="${h}" data-appid="${appid||''}"
       onerror="NexusImgFallback(this)"/>`;
   }
 
