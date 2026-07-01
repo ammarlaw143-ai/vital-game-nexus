@@ -67,34 +67,57 @@
   const COVERS = {
     "cyberpunk-2077": "https://upload.wikimedia.org/wikipedia/en/9/9f/Cyberpunk_2077_box_art.jpg",
     "elden-ring": "https://upload.wikimedia.org/wikipedia/en/b/b9/Elden_Ring_Box_art.jpg",
+    "elden-ring-nightreign": "https://upload.wikimedia.org/wikipedia/en/6/68/Elden_Ring_Nightreign_cover.jpg",
     "grand-theft-auto-v": "https://upload.wikimedia.org/wikipedia/en/a/a5/Grand_Theft_Auto_V.png",
     "grand-theft-auto-vi": "https://upload.wikimedia.org/wikipedia/en/a/a0/Grand_Theft_Auto_VI.png",
     "minecraft": "https://upload.wikimedia.org/wikipedia/en/5/51/Minecraft_cover.png",
+    "minecraft-legends": "https://upload.wikimedia.org/wikipedia/en/a/a1/Minecraft_Legends_cover_art.jpg",
+    "minecraft-dungeons": "https://upload.wikimedia.org/wikipedia/en/9/9e/Minecraft_Dungeons_cover.png",
     "red-dead-redemption-2": "https://upload.wikimedia.org/wikipedia/en/4/44/Red_Dead_Redemption_II.jpg",
+    "red-dead-redemption": "https://upload.wikimedia.org/wikipedia/en/1/12/Red_Dead_Redemption.jpg",
+    "baldur-s-gate-3": "https://upload.wikimedia.org/wikipedia/en/d/db/Baldur%27s_Gate_3_cover_art.jpg",
     "baldurs-gate-3": "https://upload.wikimedia.org/wikipedia/en/d/db/Baldur%27s_Gate_3_cover_art.jpg",
     "the-witcher-3-wild-hunt": "https://upload.wikimedia.org/wikipedia/en/0/0c/Witcher_3_cover_art.jpg",
+    "the-witcher-4": "https://upload.wikimedia.org/wikipedia/en/6/6f/The_Witcher_4_cover.jpg",
     "the-legend-of-zelda-tears-of-the-kingdom": "https://upload.wikimedia.org/wikipedia/en/4/49/Tears_of_the_Kingdom_cover.jpg",
-    "the-legend-of-zelda-totk": "https://upload.wikimedia.org/wikipedia/en/4/49/Tears_of_the_Kingdom_cover.jpg",
+    "the-legend-of-zelda-breath-of-the-wild": "https://upload.wikimedia.org/wikipedia/en/thumb/c/c6/The_Legend_of_Zelda_Breath_of_the_Wild.jpg/220px-The_Legend_of_Zelda_Breath_of_the_Wild.jpg",
+    "the-legend-of-zelda-echoes-of-wisdom": "https://upload.wikimedia.org/wikipedia/en/5/5c/The_Legend_of_Zelda_-_Echoes_of_Wisdom.jpg",
     "hogwarts-legacy": "https://upload.wikimedia.org/wikipedia/en/3/32/Hogwarts_Legacy_cover.jpg",
     "starfield": "https://upload.wikimedia.org/wikipedia/en/6/6e/Starfield_cover.jpg",
     "fortnite": "https://upload.wikimedia.org/wikipedia/en/5/5a/Fortnite_Battle_Royale_cover.jpg",
     "valorant": "https://upload.wikimedia.org/wikipedia/en/f/fc/Valorant_cover.jpg",
     "league-of-legends": "https://upload.wikimedia.org/wikipedia/en/7/77/League_of_Legends_cover.jpg",
+    "teamfight-tactics": "https://upload.wikimedia.org/wikipedia/en/7/7b/Teamfight_Tactics_logo.png",
+    "wild-rift": "https://upload.wikimedia.org/wikipedia/en/4/44/League_of_Legends_Wild_Rift_cover.jpg",
     "counter-strike-2": "https://upload.wikimedia.org/wikipedia/en/8/89/Counter-Strike_2_cover_art.jpg",
     "dota-2": "https://upload.wikimedia.org/wikipedia/en/3/37/Dota_2_cover_art.jpg",
     "apex-legends": "https://upload.wikimedia.org/wikipedia/en/7/7e/Apex_legends_cover.jpg",
     "call-of-duty-modern-warfare-iii": "https://upload.wikimedia.org/wikipedia/en/4/42/Call_of_Duty_Modern_Warfare_III_Cover_Art.jpg",
+    "call-of-duty-warzone": "https://upload.wikimedia.org/wikipedia/en/c/c3/Call_of_Duty_Warzone_cover.jpg",
+    "call-of-duty-black-ops-6": "https://upload.wikimedia.org/wikipedia/en/6/6b/Call_of_Duty_Black_Ops_6_cover.jpg",
     "overwatch-2": "https://upload.wikimedia.org/wikipedia/en/5/56/Overwatch_2_cover_art.jpg",
     "diablo-iv": "https://upload.wikimedia.org/wikipedia/en/2/28/Diablo_IV_cover_art.png",
+    "diablo-iii": "https://upload.wikimedia.org/wikipedia/en/b/b6/Diablo_III_cover.png",
+    "world-of-warcraft": "https://upload.wikimedia.org/wikipedia/en/6/6d/WoW_Box_Art1.jpg",
+    "hearthstone": "https://upload.wikimedia.org/wikipedia/en/e/e6/Hearthstone_logo.png",
+    "starcraft-ii": "https://upload.wikimedia.org/wikipedia/en/9/97/StarCraft_II_-_Box_Art.jpg",
     "spider-man-2": "https://upload.wikimedia.org/wikipedia/en/4/4e/Marvel%27s_Spider-Man_2_cover.jpg",
+    "marvel-s-spider-man-2": "https://upload.wikimedia.org/wikipedia/en/4/4e/Marvel%27s_Spider-Man_2_cover.jpg",
+    "marvel-s-wolverine": "https://upload.wikimedia.org/wikipedia/en/9/9e/Marvels_Wolverine_teaser.jpg",
     "god-of-war-ragnarok": "https://upload.wikimedia.org/wikipedia/en/e/ee/God_of_War_Ragnar%C3%B6k_cover.jpg",
     "horizon-forbidden-west": "https://upload.wikimedia.org/wikipedia/en/6/6f/Horizon_Forbidden_West_cover_art.jpg",
     "the-last-of-us-part-ii": "https://upload.wikimedia.org/wikipedia/en/4/4f/TLOU_P2_Box_Art_2.png",
     "ghost-of-tsushima": "https://upload.wikimedia.org/wikipedia/en/b/b6/Ghost_of_Tsushima.jpg",
+    "ghost-of-yotei": "https://upload.wikimedia.org/wikipedia/en/2/2f/Ghost_of_Yotei_cover.jpg",
+    "death-stranding-2": "https://upload.wikimedia.org/wikipedia/en/6/6f/Death_Stranding_2_On_the_Beach_cover.jpg",
     "halo-infinite": "https://upload.wikimedia.org/wikipedia/en/1/14/Halo_Infinite.png",
     "forza-horizon-5": "https://upload.wikimedia.org/wikipedia/en/d/d6/Forza_Horizon_5_cover_art.jpg",
+    "fable": "https://upload.wikimedia.org/wikipedia/en/thumb/b/b3/Fable_2025_cover_art.jpg/220px-Fable_2025_cover_art.jpg",
+    "the-elder-scrolls-vi": "https://upload.wikimedia.org/wikipedia/en/thumb/7/78/The_Elder_Scrolls_VI_logo.png/220px-The_Elder_Scrolls_VI_logo.png",
     "super-mario-odyssey": "https://upload.wikimedia.org/wikipedia/en/8/8d/Super_Mario_Odyssey.jpg",
     "super-mario-bros-wonder": "https://upload.wikimedia.org/wikipedia/en/9/97/Super_Mario_Bros._Wonder_cover.jpg",
+    "mario-kart-8-deluxe": "https://upload.wikimedia.org/wikipedia/en/1/17/Mario_Kart_8_Deluxe.jpg",
+    "splatoon-3": "https://upload.wikimedia.org/wikipedia/en/6/6f/Splatoon_3_cover.jpg",
     "animal-crossing-new-horizons": "https://upload.wikimedia.org/wikipedia/en/1/1f/Animal_Crossing_New_Horizons.jpg",
     "stardew-valley": "https://upload.wikimedia.org/wikipedia/en/f/fd/Logo_of_Stardew_Valley.png",
     "hades-ii": "https://upload.wikimedia.org/wikipedia/en/4/44/Hades_II_cover.jpg",
@@ -103,8 +126,30 @@
     "helldivers-2": "https://upload.wikimedia.org/wikipedia/en/7/70/Helldivers_2_cover_art.jpg",
     "alan-wake-2": "https://upload.wikimedia.org/wikipedia/en/3/3e/Alan_Wake_2_cover_art.jpg",
     "resident-evil-4-remake": "https://upload.wikimedia.org/wikipedia/en/f/fd/Resident_Evil_4_remake_cover_art.jpg",
+    "resident-evil-9": "https://upload.wikimedia.org/wikipedia/en/e/ec/Resident_Evil_Requiem_cover.jpg",
     "final-fantasy-xvi": "https://upload.wikimedia.org/wikipedia/en/0/0b/Final_Fantasy_XVI_cover_art.jpg",
-    "final-fantasy-vii-rebirth": "https://upload.wikimedia.org/wikipedia/en/6/68/Final_Fantasy_VII_Rebirth_cover_art.jpg"
+    "final-fantasy-vii-rebirth": "https://upload.wikimedia.org/wikipedia/en/6/68/Final_Fantasy_VII_Rebirth_cover_art.jpg",
+    "genshin-impact": "https://upload.wikimedia.org/wikipedia/en/e/ec/Genshin_Impact_cover.png",
+    "roblox": "https://upload.wikimedia.org/wikipedia/commons/6/6c/Roblox_Logo.svg",
+    "pok-mon-scarlet": "https://upload.wikimedia.org/wikipedia/en/2/2e/Pokemon_Scarlet_EN_boxart.png",
+    "pok-mon-violet": "https://upload.wikimedia.org/wikipedia/en/9/9f/Pokemon_Violet_EN_boxart.png",
+    "pok-mon-legends-arceus": "https://upload.wikimedia.org/wikipedia/en/9/9a/Pokemon_Legends_Arceus.jpg",
+    "pok-mon-legends-z-a": "https://upload.wikimedia.org/wikipedia/en/5/56/Pokemon_Legends_ZA_boxart.jpg",
+    "pok-mon-go": "https://upload.wikimedia.org/wikipedia/commons/5/53/Pokemon_Go_logo.svg",
+    "pok-mon-unite": "https://upload.wikimedia.org/wikipedia/en/4/49/Pokemon_Unite_cover.jpg",
+    "metroid-prime-remastered": "https://upload.wikimedia.org/wikipedia/en/7/7d/Metroid_Prime_Remastered_cover_art.jpg",
+    "metroid-prime-4": "https://upload.wikimedia.org/wikipedia/en/5/57/Metroid_Prime_4_Beyond_key_art.jpg",
+    "pikmin-4": "https://upload.wikimedia.org/wikipedia/en/1/1a/Pikmin_4_cover_art.jpg",
+    "fire-emblem-engage": "https://upload.wikimedia.org/wikipedia/en/f/f3/Fire_Emblem_Engage_cover.jpg",
+    "kirby-and-the-forgotten-land": "https://upload.wikimedia.org/wikipedia/en/8/86/Kirby_and_the_Forgotten_Land_cover.jpg",
+    "xenoblade-chronicles-3": "https://upload.wikimedia.org/wikipedia/en/5/54/Xenoblade_Chronicles_3.jpeg",
+    "bayonetta-3": "https://upload.wikimedia.org/wikipedia/en/8/86/Bayonetta_3_cover.jpg",
+    "astro-bot": "https://upload.wikimedia.org/wikipedia/en/1/1d/Astro_Bot_cover.jpg",
+    "bloodborne": "https://upload.wikimedia.org/wikipedia/en/6/68/Bloodborne_Cover_Wallpaper.jpg",
+    "candy-crush-saga": "https://upload.wikimedia.org/wikipedia/en/7/79/Candy_Crush_Saga_logo.png",
+    "clash-royale": "https://upload.wikimedia.org/wikipedia/en/7/71/Clash_Royale_official_icon.png",
+    "far-cry-7": "https://upload.wikimedia.org/wikipedia/en/0/06/Far_Cry_7_logo.jpg",
+    "mass-effect-5": "https://upload.wikimedia.org/wikipedia/en/c/c9/Mass_Effect_5_teaser.jpg"
   };
   // Image source helpers with multi-step fallback chain.
   function steamImg(appid){
@@ -121,9 +166,10 @@
   }
   function gameImg(g, w, h){
     if (!g) return placeholderImg("Game", w, h);
-    if (g.image) return g.image;
-    if (g.appid) return steamImg(g.appid);
+    // Prefer curated Wikipedia box art (authoritative), then Steam library, then remote search.
     if (COVERS[g.slug]) return COVERS[g.slug];
+    if (g.appid) return steamImg(g.appid);
+    if (g.image) return g.image;
     return bingImg(`${g.title} video game cover art`, w, h);
   }
   function newsImg(a, w, h){
@@ -138,18 +184,19 @@
     el.dataset.fallbackStep = String(step);
     const title = el.dataset.title || "";
     const slug = el.dataset.slug || "";
+    const appid = el.dataset.appid || "";
     const w = parseInt(el.dataset.w || "480", 10);
     const h = parseInt(el.dataset.h || "640", 10);
-    if (step === 1 && COVERS[slug]) { el.src = COVERS[slug]; return; }
-    if (step <= 2) { el.src = bingImg(`${title} video game cover`, w, h); return; }
-    if (step === 3) { el.src = ddgImg(`${title} game`); return; }
+    if (step === 1 && appid) { el.src = steamImg(appid); return; }
+    if (step <= 2) { el.src = bingImg(`${title} video game cover art`, w, h); return; }
+    if (step === 3) { el.src = ddgImg(`${title} game cover`); return; }
     el.onerror = null;
     el.src = placeholderImg(title.slice(0,16), w, h);
   };
 
-  function imgTag(src, alt, slug, title, w, h){
+  function imgTag(src, alt, slug, title, w, h, appid){
     return `<img class="cover-img" src="${src}" alt="${alt}" loading="lazy"
-      data-slug="${slug}" data-title="${(title||'').replace(/"/g,'&quot;')}" data-w="${w}" data-h="${h}"
+      data-slug="${slug}" data-title="${(title||'').replace(/"/g,'&quot;')}" data-w="${w}" data-h="${h}" data-appid="${appid||''}"
       onerror="NexusImgFallback(this)"/>`;
   }
 
@@ -164,7 +211,7 @@
     const fav = window.NexusFavs.has(g.slug);
     return `<a class="game-card" href="game.html?slug=${g.slug}">
       <div class="cover">
-        ${imgTag(gameImg(g, 480, 640), g.title, g.slug, g.title, 480, 640)}
+        ${imgTag(gameImg(g, 480, 640), g.title, g.slug, g.title, 480, 640, g.appid)}
         <div class="cover-grad" style="background:${g.gradient};mix-blend-mode:overlay;opacity:.28"></div>
         <div class="cover-grid grid-bg" style="opacity:.25"></div>
         <div class="cover-fade"></div>
