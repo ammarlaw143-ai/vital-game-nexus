@@ -184,11 +184,12 @@
     el.dataset.fallbackStep = String(step);
     const title = el.dataset.title || "";
     const slug = el.dataset.slug || "";
+    const appid = el.dataset.appid || "";
     const w = parseInt(el.dataset.w || "480", 10);
     const h = parseInt(el.dataset.h || "640", 10);
-    if (step === 1 && COVERS[slug]) { el.src = COVERS[slug]; return; }
-    if (step <= 2) { el.src = bingImg(`${title} video game cover`, w, h); return; }
-    if (step === 3) { el.src = ddgImg(`${title} game`); return; }
+    if (step === 1 && appid) { el.src = steamImg(appid); return; }
+    if (step <= 2) { el.src = bingImg(`${title} video game cover art`, w, h); return; }
+    if (step === 3) { el.src = ddgImg(`${title} game cover`); return; }
     el.onerror = null;
     el.src = placeholderImg(title.slice(0,16), w, h);
   };
