@@ -69,7 +69,7 @@
     "elden-ring": "https://upload.wikimedia.org/wikipedia/en/b/b9/Elden_Ring_Box_art.jpg",
     "elden-ring-nightreign": "https://upload.wikimedia.org/wikipedia/en/6/68/Elden_Ring_Nightreign_cover.jpg",
     "grand-theft-auto-v": "https://upload.wikimedia.org/wikipedia/en/a/a5/Grand_Theft_Auto_V.png",
-    "grand-theft-auto-vi": "https://upload.wikimedia.org/wikipedia/en/a/a0/Grand_Theft_Auto_VI.png",
+    "grand-theft-auto-vi": "assets/img/gta-vi.png",
     "minecraft": "https://upload.wikimedia.org/wikipedia/en/5/51/Minecraft_cover.png",
     "minecraft-legends": "https://upload.wikimedia.org/wikipedia/en/a/a1/Minecraft_Legends_cover_art.jpg",
     "minecraft-dungeons": "https://upload.wikimedia.org/wikipedia/en/9/9e/Minecraft_Dungeons_cover.png",
